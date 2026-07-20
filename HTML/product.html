@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take Me Out — solid perfume stick | CH24</title>
+  <meta name="description" content="A 5g solid perfume stick in a flip-top box. Alcohol free, unisex, long lasting. ₹499 for a pack of two.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="section--light">
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="nav__logo" href="index.html" aria-label="CH24 home">
+      <img src="assets/logo-white.png" alt="CH24" width="80" height="46">
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+  </header>
+
+  <main class="page page--wide">
+    <div class="pd">
+      <figure class="pd__media">
+        <img data-pd-img src="assets/products/product-ocean-rush.jpg" alt="Take Me Out solid perfume stick">
+      </figure>
+      <div>
+        <span class="badge" data-pd-mood>MOOD</span>
+        <span class="pd__tone" data-pd-tone style="margin-left:0.6rem">LABEL</span>
+        <h1 class="pd__name" data-pd-name>Take Me Out</h1>
+        <p class="pd__desc" data-pd-desc>Notes</p>
+        <p class="pd__perfect-for" data-pd-perfect>Perfect for</p>
+        <p class="pd__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+        <p class="pd__price">₹499</p>
+        <p class="pd__price-note">Pack of two. This scent plus any second one you pick.</p>
+        <div class="pd__actions">
+          <button class="btn btn--orange" type="button" data-pd-add>Add to pair</button>
+          <a class="btn btn--ghost" href="shop.html">Pick the second</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pd__related">
+      <h2 class="pd__related-title">The rest of Pack 01</h2>
+      <div class="shop__grid" style="padding:0" data-pd-related></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__signup">
+        <p class="footer__hook">First drops go to the list.</p>
+        <form class="footer__form" action="#" method="post">
+          <label class="visually-hidden" for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="your email" required>
+          <button class="btn btn--white" type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer__col" aria-label="Shop">
+        <p class="footer__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+        <a href="checkout.html">Your bag</a>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <p class="footer__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer__col" aria-label="Legal">
+        <p class="footer__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
+    <div class="footer__bar">
+      <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
+      <p>SCENT IS IDENTITY. NOT OCCASION.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    /* fill the template from ?p=ocean|pistachio|vanilla|oud */
+    (() => {
+      const id = new URLSearchParams(location.search).get("p");
+      const p = CH24_PRODUCTS[id];
+      if (!p) { location.replace("shop.html"); return; }
+
+      document.title = `${p.name} — Take Me Out solid perfume stick | CH24`;
+      document.querySelector("[data-pd-name]").textContent = p.name;
+      document.querySelector("[data-pd-desc]").textContent = `Notes: ${p.notes}`;
+      document.querySelector("[data-pd-perfect]").textContent = `Perfect for: ${p.perfectFor}`;
+      document.querySelector("[data-pd-mood]").textContent = p.mood.toUpperCase();
+      const tone = document.querySelector("[data-pd-tone]");
+      tone.textContent = `LABEL · ${p.toneName.toUpperCase()}`;
+      tone.style.borderColor = p.tone;
+      const img = document.querySelector("[data-pd-img]");
+      img.src = p.img;
+      img.alt = `Take Me Out ${p.name} solid perfume stick`;
+
+      const add = document.querySelector("[data-pd-add]");
+      const sync = () => add.textContent = getPair().includes(id) ? "In your pair" : "Add to pair";
+      add.addEventListener("click", () => { togglePick(id); sync(); });
+      sync();
+
+      /* the other three scents, so switching is one tap away */
+      const rail = document.querySelector("[data-pd-related]");
+      Object.keys(CH24_PRODUCTS).filter(k => k !== id).forEach(k => {
+        const o = CH24_PRODUCTS[k];
+        const a = document.createElement("a");
+        a.href = `product.html?p=${k}`;
+        a.style.cssText = "display:block;background:#141414;border-radius:10px;overflow:hidden;text-decoration:none";
+        a.innerHTML = `
+          <div style="aspect-ratio:4/5;overflow:hidden">
+            <img src="${o.img}" alt="${o.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <div style="padding:1rem">
+            <p style="font-family:var(--font-display);font-weight:800;font-style:italic;font-size:1.1rem;color:#fff">${o.name}</p>
+            <p style="font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,.55);margin-top:0.3rem">${o.notes}</p>
+          </div>`;
+        rail.appendChild(a);
+      });
+
+      /* product schema for search engines */
+      const ld = document.createElement("script");
+      ld.type = "application/ld+json";
+      ld.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": `Take Me Out ${p.name} — solid perfume stick`,
+        "brand": { "@type": "Brand", "name": "CH24" },
+        "description": `5g solid perfume stick in a flip-top box. Notes: ${p.notes}. Alcohol free, unisex, long lasting. Sold as a pack of two for ₹499.`,
+        "offers": { "@type": "Offer", "priceCurrency": "INR", "price": "499", "availability": "https://schema.org/InStock" }
+      });
+      document.head.appendChild(ld);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your bag | CH24</title>
+  <meta name="description" content="Your Take Me Out pair. ₹499 for a pack of two.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="section--light">
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="nav__logo" href="index.html" aria-label="CH24 home">
+      <img src="assets/logo-white.png" alt="CH24" width="80" height="46">
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+  </header>
+
+  <main class="page">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">YOUR BAG</p>
+      <h1 class="page-hero__title" data-co-title>Your pair.</h1>
+    </header>
+
+    <div class="checkout-box" data-co-full hidden>
+      <ul data-co-list></ul>
+      <ul>
+        <li class="total"><span>Pack of two</span><span>₹499</span></li>
+      </ul>
+      <a class="btn btn--orange" data-co-wa href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+      <p class="checkout-note">UPI and card payments go live with the store launch. Until then, orders are confirmed in one tap on WhatsApp.</p>
+    </div>
+
+    <div class="prose" data-co-empty hidden>
+      <p>Your pair is not complete yet. It takes two.</p>
+      <p><a href="shop.html">Pick your pair →</a></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__signup">
+        <p class="footer__hook">First drops go to the list.</p>
+        <form class="footer__form" action="#" method="post">
+          <label class="visually-hidden" for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="your email" required>
+          <button class="btn btn--white" type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer__col" aria-label="Shop">
+        <p class="footer__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+        <a href="checkout.html">Your bag</a>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <p class="footer__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer__col" aria-label="Legal">
+        <p class="footer__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
+    <div class="footer__bar">
+      <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
+      <p>SCENT IS IDENTITY. NOT OCCASION.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    (() => {
+      const pair = getPair();
+      if (pair.length === 2) {
+        document.querySelector("[data-co-full]").hidden = false;
+        document.querySelector("[data-co-list]").innerHTML = pair
+          .map(id => `<li><span>Take Me Out · ${CH24_PRODUCTS[id].name}</span><span>5 g</span></li>`)
+          .join("");
+        document.querySelector("[data-co-wa]").href = pairWaLink();
+      } else {
+        document.querySelector("[data-co-title]").textContent = "Almost there.";
+        document.querySelector("[data-co-empty]").hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — talk to CH24</title>
+  <meta name="description" content="Message CH24 on WhatsApp or email. We reply as people, not as a ticket queue.">
+  <link rel="canonical" href="https://ch24.in/contact.html">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="section--light">
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="nav__logo" href="index.html" aria-label="CH24 home">
+      <img src="assets/logo-white.png" alt="CH24" width="80" height="46">
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+  </header>
+
+  <main class="page">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">CONTACT</p>
+      <h1 class="page-hero__title">Talk to us.</h1>
+      <p class="page-hero__sub">Order help, scent questions, collabs. We reply as people, not as a ticket queue.</p>
+    </header>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>WhatsApp</h2>
+        <p>Fastest way to reach us. Tap, type, done.</p>
+        <a class="btn btn--orange" data-wa-cta href="#" target="_blank" rel="noopener">Message on WhatsApp</a>
+        <h2 style="margin-top:2rem">Email</h2>
+        <p><a href="mailto:help@ch24.in" style="color:var(--orange)">help@ch24.in</a></p>
+      </div>
+
+      <form class="contact-card" data-contact-form>
+        <h2>Or write it here</h2>
+        <div class="form-field">
+          <label for="cname">Name</label>
+          <input id="cname" name="name" type="text" required>
+        </div>
+        <div class="form-field">
+          <label for="cmsg">Message</label>
+          <textarea id="cmsg" name="message" required></textarea>
+        </div>
+        <button class="btn btn--white" type="submit">Send on WhatsApp</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__signup">
+        <p class="footer__hook">First drops go to the list.</p>
+        <form class="footer__form" action="#" method="post">
+          <label class="visually-hidden" for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="your email" required>
+          <button class="btn btn--white" type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer__col" aria-label="Shop">
+        <p class="footer__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+        <a href="checkout.html">Your bag</a>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <p class="footer__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer__col" aria-label="Legal">
+        <p class="footer__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
+    <div class="footer__bar">
+      <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
+      <p>SCENT IS IDENTITY. NOT OCCASION.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    document.querySelector("[data-wa-cta]").href =
+      `https://wa.me/${CH24_WA}?text=${encodeURIComponent("hi CH24 —")}`;
+
+    document.querySelector("[data-contact-form]").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const msg = `hi CH24 — I'm ${f.get("name")}. ${f.get("message")}`;
+      window.open(`https://wa.me/${CH24_WA}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>
