@@ -1,0 +1,37 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "CH24 custom brand theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity AI",
+    "theme_documentation_url": "https://ch24.in/",
+    "theme_support_url": "https://ch24.in/"
+  },
+  {
+    "name": "General settings",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp phone number (e.g. 919196036665)",
+        "default": "919196036665"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link",
+        "default": "https://instagram.com/ch24"
+      }
+    ]
+  }
+]

@@ -25,7 +25,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="has-photo-hero">
@@ -53,89 +53,123 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
   </header>
 
   <main id="top">
 
-    <!-- hero: photo only, no copy — the value prop lives in .intro right below -->
-    <section class="hero-photo" data-hero>
-      <img src="assets/products/hero-lineup.jpg" alt="" loading="eager">
-      <div class="hero-photo__scroll" aria-hidden="true">
-        SCROLL
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    <!-- hero: video-capable (poster = real photo; drop a <source> in later
+         and it plays — no fabricated footage). Type physically overlaps
+         the photo instead of sitting in a safe centered block above it. -->
+    <section class="hero" data-hero>
+      <div class="hero__media" data-hero-media>
+        <video poster="assets/products/hero-lineup.jpg" autoplay muted loop playsinline aria-hidden="true">
+          <!-- EDIT HERE: add a real clip (box flip-open, application) and it takes over from the poster automatically -->
+        </video>
+        <img src="assets/products/hero-lineup.jpg" alt="" loading="eager">
       </div>
+      <a class="hero__chip" href="#shop">
+        <span class="hero__chip-dot" aria-hidden="true"></span>
+        4 scents. Pick 2 for ₹499.
+      </a>
+      <div class="hero__type">
+        <p class="hero__eyebrow anim-eyebrow">INDIA'S 1ST GEN Z FRAGRANCE HOUSE</p>
+        <div class="hero__line hero__line--1">Carry</div>
+        <div class="hero__line hero__line--2">scent.</div>
+        <div class="hero__line hero__line--3">Everyday.</div>
+      </div>
+      <div class="hero__foot">
+        <a class="btn btn--orange" href="#shop">Shop Pack 01 · ₹499</a>
+        <p class="hero__sub">Take Me Out is a 5g solid perfume stick in a flip-top box. Flip it open, pull it out, go.</p>
+      </div>
+      <p class="hero__scroll" aria-hidden="true">SCROLL<br><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg></p>
     </section>
 
     <section class="intro">
-      <p class="intro__eyebrow anim-eyebrow">INDIA'S GEN Z FRAGRANCE HOUSE</p>
-      <h1 class="intro__title">Carry scent. <em>Every day.</em></h1>
-      <div class="intro__row">
-        <p class="intro__sub">Take Me Out is a 5g solid perfume stick in a flip-top box. Flip it open, pull it out, go.</p>
-        <a class="btn btn--orange" href="#shop">Shop Pack 01 · ₹499</a>
-      </div>
+      <p class="intro__sub">Not a perfume brand. India's first Gen Z fragrance house — built for how this generation actually carries scent.</p>
+      <a class="btn btn--ghost" href="about.html">Our story</a>
     </section>
 
-    <!-- mood matcher: the engagement moment. Real "perfect for" data from
-         the product line, no invented copy. Click a mood, it picks the
-         matching scent as your first choice. -->
+    <!-- mood strip: real "perfect for" data from the packaging, no
+         invented copy. Hover (or tap) folds the row into the panel
+         you're on; "Shop this" opens the matching box below. -->
     <section class="mood" id="mood">
       <div class="mood__head">
         <p class="mood__eyebrow">PICK YOUR MOMENT</p>
         <h2 class="mood__title">What's the mood?</h2>
       </div>
-      <div class="mood__grid">
-        <a class="mood__tile" href="shop.html" data-mood-pick="ocean">
-          <img src="assets/products/loose-ocean-rush.jpg" alt="" loading="lazy">
-          <span class="mood__label">
-            <span class="k">MOOD 01</span>
-            <span class="v">Office</span>
-            <span class="scent">Ocean Rush →</span>
-          </span>
-        </a>
-        <a class="mood__tile" href="shop.html" data-mood-pick="vanilla">
-          <img src="assets/products/loose-vanilla-bean.jpg" alt="" loading="lazy">
-          <span class="mood__label">
-            <span class="k">MOOD 02</span>
-            <span class="v">Date</span>
-            <span class="scent">Vanilla Bean →</span>
-          </span>
-        </a>
-        <a class="mood__tile" href="shop.html" data-mood-pick="oud">
-          <img src="assets/products/loose-oud-affair.jpg" alt="" loading="lazy">
-          <span class="mood__label">
-            <span class="k">MOOD 03</span>
-            <span class="v">Night</span>
-            <span class="scent">Oud Affair →</span>
-          </span>
-        </a>
-        <a class="mood__tile" href="shop.html" data-mood-pick="pistachio">
-          <img src="assets/products/loose-nutty-pistachio.jpg" alt="" loading="lazy">
-          <span class="mood__label">
-            <span class="k">MOOD 04</span>
-            <span class="v">Party</span>
-            <span class="scent">Nutty Pistachio →</span>
-          </span>
-        </a>
+      <div class="mood__accordion">
+        <div class="mood__panel" data-panel tabindex="0">
+          <img class="mood__bg" src="assets/products/loose-ocean-rush.jpg" alt="">
+          <div class="mood__overlay"></div>
+          <span class="mood__collapsed">OFFICE</span>
+          <div class="mood__content">
+            <p class="mood__k">MOOD 01</p>
+            <p class="mood__v">Office</p>
+            <p class="mood__scentname">Ocean Rush</p>
+            <p class="mood__notes">Aqua Notes · Jasmine · Patchouli</p>
+            <a class="mood__cta" href="#shop" data-mood-pick="ocean">Shop this →</a>
+          </div>
+        </div>
+        <div class="mood__panel" data-panel tabindex="0">
+          <img class="mood__bg" src="assets/products/loose-vanilla-bean.jpg" alt="">
+          <div class="mood__overlay"></div>
+          <span class="mood__collapsed">DATE</span>
+          <div class="mood__content">
+            <p class="mood__k">MOOD 02</p>
+            <p class="mood__v">Date</p>
+            <p class="mood__scentname">Vanilla Bean</p>
+            <p class="mood__notes">Vanilla · Amber · Warm Spice</p>
+            <a class="mood__cta" href="#shop" data-mood-pick="vanilla">Shop this →</a>
+          </div>
+        </div>
+        <div class="mood__panel" data-panel tabindex="0">
+          <img class="mood__bg" src="assets/products/loose-oud-affair.jpg" alt="">
+          <div class="mood__overlay"></div>
+          <span class="mood__collapsed">NIGHT</span>
+          <div class="mood__content">
+            <p class="mood__k">MOOD 03</p>
+            <p class="mood__v">Night</p>
+            <p class="mood__scentname">Oud Affair</p>
+            <p class="mood__notes">Agarwood · Oud · Vanilla</p>
+            <a class="mood__cta" href="#shop" data-mood-pick="oud">Shop this →</a>
+          </div>
+        </div>
+        <div class="mood__panel" data-panel tabindex="0">
+          <img class="mood__bg" src="assets/products/loose-nutty-pistachio.jpg" alt="">
+          <div class="mood__overlay"></div>
+          <span class="mood__collapsed">PARTY</span>
+          <div class="mood__content">
+            <p class="mood__k">MOOD 04</p>
+            <p class="mood__v">Party</p>
+            <p class="mood__scentname">Nutty Pistachio</p>
+            <p class="mood__notes">Pistachio · Almond · Woody</p>
+            <a class="mood__cta" href="#shop" data-mood-pick="pistachio">Shop this →</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- marquee divider -->
     <div class="marquee marquee--big" aria-hidden="true">
       <div class="marquee__track">
+        <span>scent is identity. not occasion.</span><span>·</span>
+        <span>alcohol free. unisex.</span><span>·</span>
         <span>carry it. every day.</span><span>·</span>
-        <span>carry it. every day.</span><span>·</span>
-        <span>carry it. every day.</span><span>·</span>
+        <span>scent is identity. not occasion.</span><span>·</span>
+        <span>alcohol free. unisex.</span><span>·</span>
         <span>carry it. every day.</span><span>·</span>
       </div>
     </div>
 
-    <!-- shop -->
+    <!-- shop: flip-top box cards — the site's signature. Closed, they
+         read like the real packaging. Hover/tap and the lid opens like
+         the actual product does. -->
     <section class="shop" id="shop">
       <header class="shop__head">
         <div>
-          <h2 class="shop__title">Take Me Out <span class="shop__pack">Pack 01</span></h2>
-          <p class="shop__sub">Four fragrances. Pick any two for ₹499.</p>
+          <h2 class="shop__title">Flip it <span class="shop__pack">open.</span></h2>
+          <p class="shop__sub">Take Me Out, Pack 01. Four fragrances. Pick any two for ₹499.</p>
         </div>
         <button class="shuffle-btn" type="button" data-shuffle>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
@@ -143,61 +177,73 @@
         </button>
       </header>
 
-      <div class="shop__grid">
-        <article class="product" data-id="ocean">
-          <a class="product__media" style="--tone:#61D6C4" href="product.html?p=ocean">
-            <span class="product__tag">OCEAN RUSH</span>
-            <span class="product__mood">OFFICE</span>
-            <img src="assets/products/product-ocean-rush.jpg" alt="Ocean Rush solid perfume stick" loading="lazy">
+      <div class="box-grid">
+        <div>
+          <a class="box" href="product.html?p=ocean" data-id="ocean" tabindex="0" style="--tone:#61D6C4; --ink:#0A0A0A">
+            <span class="box__flag">OFFICE</span>
+            <div class="box__inner">
+              <div class="box__interior"><img src="assets/products/product-ocean-rush.jpg" alt="Ocean Rush solid perfume stick"></div>
+              <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">OCEAN RUSH</p></div></div>
+            </div>
+            <p class="box__hint">HOVER TO OPEN</p>
           </a>
-          <div class="product__info">
-            <h3 class="product__name">Ocean Rush</h3>
-            <p class="product__spec">AQUA NOTES · JASMINE · PATCHOULI</p>
-            <button class="product__pick" type="button">Add to pair</button>
+          <div class="box__info">
+            <h3 class="box__name"><a href="product.html?p=ocean">Ocean Rush</a></h3>
+            <p class="box__spec">AQUA NOTES · JASMINE · PATCHOULI</p>
+            <button class="box__pick" type="button">Add to pair</button>
           </div>
-        </article>
+        </div>
 
-        <article class="product" data-id="pistachio">
-          <a class="product__media" style="--tone:#85AF67" href="product.html?p=pistachio">
-            <span class="product__tag">NUTTY PISTACHIO</span>
-            <span class="product__mood">PARTY</span>
-            <img src="assets/products/product-nutty-pistachio.jpg" alt="Nutty Pistachio solid perfume stick" loading="lazy">
+        <div>
+          <a class="box" href="product.html?p=pistachio" data-id="pistachio" tabindex="0" style="--tone:#85AF67; --ink:#0A0A0A">
+            <span class="box__flag">PARTY</span>
+            <div class="box__inner">
+              <div class="box__interior"><img src="assets/products/product-nutty-pistachio.jpg" alt="Nutty Pistachio solid perfume stick"></div>
+              <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">NUTTY PISTACHIO</p></div></div>
+            </div>
+            <p class="box__hint">HOVER TO OPEN</p>
           </a>
-          <div class="product__info">
-            <h3 class="product__name">Nutty Pistachio</h3>
-            <p class="product__spec">PISTACHIO · ALMOND · WOODY</p>
-            <button class="product__pick" type="button">Add to pair</button>
+          <div class="box__info">
+            <h3 class="box__name"><a href="product.html?p=pistachio">Nutty Pistachio</a></h3>
+            <p class="box__spec">PISTACHIO · ALMOND · WOODY</p>
+            <button class="box__pick" type="button">Add to pair</button>
           </div>
-        </article>
+        </div>
 
-        <article class="product" data-id="vanilla">
-          <a class="product__media" style="--tone:#E9C7AC" href="product.html?p=vanilla">
-            <span class="product__tag">VANILLA BEAN</span>
-            <span class="product__mood">DATE</span>
-            <img src="assets/products/product-vanilla-bean.jpg" alt="Vanilla Bean solid perfume stick" loading="lazy">
+        <div>
+          <a class="box" href="product.html?p=vanilla" data-id="vanilla" tabindex="0" style="--tone:#E9C7AC; --ink:#0A0A0A">
+            <span class="box__flag">DATE</span>
+            <div class="box__inner">
+              <div class="box__interior"><img src="assets/products/product-vanilla-bean.jpg" alt="Vanilla Bean solid perfume stick"></div>
+              <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">VANILLA BEAN</p></div></div>
+            </div>
+            <p class="box__hint">HOVER TO OPEN</p>
           </a>
-          <div class="product__info">
-            <h3 class="product__name">Vanilla Bean</h3>
-            <p class="product__spec">VANILLA · AMBER · WARM SPICE</p>
-            <button class="product__pick" type="button">Add to pair</button>
+          <div class="box__info">
+            <h3 class="box__name"><a href="product.html?p=vanilla">Vanilla Bean</a></h3>
+            <p class="box__spec">VANILLA · AMBER · WARM SPICE</p>
+            <button class="box__pick" type="button">Add to pair</button>
           </div>
-        </article>
+        </div>
 
-        <article class="product" data-id="oud">
-          <a class="product__media" style="--tone:#533C2C" href="product.html?p=oud">
-            <span class="product__tag" style="color:#fff">OUD AFFAIR</span>
-            <span class="product__mood">NIGHT</span>
-            <img src="assets/products/product-oud-affair.jpg" alt="Oud Affair solid perfume stick" loading="lazy">
+        <div>
+          <a class="box" href="product.html?p=oud" data-id="oud" tabindex="0" style="--tone:#533C2C; --ink:#FFFFFF">
+            <span class="box__flag">NIGHT</span>
+            <div class="box__inner">
+              <div class="box__interior"><img src="assets/products/product-oud-affair.jpg" alt="Oud Affair solid perfume stick"></div>
+              <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">OUD AFFAIR</p></div></div>
+            </div>
+            <p class="box__hint">HOVER TO OPEN</p>
           </a>
-          <div class="product__info">
-            <h3 class="product__name">Oud Affair</h3>
-            <p class="product__spec">AGARWOOD · OUD · VANILLA</p>
-            <button class="product__pick" type="button">Add to pair</button>
+          <div class="box__info">
+            <h3 class="box__name"><a href="product.html?p=oud">Oud Affair</a></h3>
+            <p class="box__spec">AGARWOOD · OUD · VANILLA</p>
+            <button class="box__pick" type="button">Add to pair</button>
           </div>
-        </article>
+        </div>
       </div>
 
-      <aside class="pairbar" data-pairbar aria-live="polite">
+      <aside class="pairbar" data-pairbar aria-live="polite" aria-atomic="true">
         <p class="pairbar__label">Your pair <span data-pair-names>: pick two</span></p>
         <a class="btn btn--orange pairbar__cta" href="checkout.html" data-pair-cta aria-disabled="true">Checkout · ₹499</a>
       </aside>
@@ -215,53 +261,57 @@
           <article class="panel">
             <p class="panel__step">STEP 02</p>
             <h3 class="panel__title">Pull it out.</h3>
-            <figure class="panel__media"><img src="https://placehold.co/800x1000/FFFFFF/0A0A0A?text=800%C3%971000" alt="Stick pulled from the box" loading="lazy"></figure>
+            <figure class="panel__media"><img src="assets/products/ritual-pull-out.jpg" alt="All four CH24 sticks pulled out and balanced" loading="lazy"></figure>
           </article>
           <article class="panel">
             <p class="panel__step">STEP 03</p>
             <h3 class="panel__title">Go.</h3>
-            <figure class="panel__media"><img src="https://placehold.co/800x1000/0A0A0A/FFFFFF?text=800%C3%971000" alt="Stick applied on the move" loading="lazy"></figure>
+            <figure class="panel__media"><img src="assets/products/ritual-go.jpg" alt="Applying solid perfume stick on the move" loading="lazy"></figure>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- manifesto -->
-    <section class="manifesto section--light" id="story">
-      <p class="manifesto__text" data-words>CH24 is not a perfume brand. It is India's first Gen Z fragrance house. Built in India. Built for now. Your scent is daily, not occasional. It fits in a pocket, not on a shelf.</p>
-    </section>
+    <!-- manifesto: full-bleed cream band -->
+    <div class="manifesto-wrap">
+      <section class="manifesto" id="story">
+        <p class="manifesto__text" data-words>CH24 is not a perfume brand. It is India's first Gen Z fragrance house. Built in India. Built for now. Your scent is daily, not occasional. It fits in a pocket, not on a shelf.</p>
+      </section>
+    </div>
 
-    <!-- details -->
-    <section class="details section--light">
-      <ul class="details__list">
-        <li class="details__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v18M5 12h14"/><circle cx="12" cy="12" r="9"/></svg>
-          <p>ALCOHOL FREE</p>
-        </li>
-        <li class="details__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M8 8h8"/></svg>
-          <p>5 G · POCKET SIZE</p>
-        </li>
-        <li class="details__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c1.5-4 4-6 7-6s5.5 2 7 6"/></svg>
-          <p>UNISEX</p>
-        </li>
-        <li class="details__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <p>LONG LASTING</p>
-        </li>
-      </ul>
-    </section>
+    <!-- details: full-bleed cream band -->
+    <div class="details-wrap">
+      <section class="details">
+        <ul class="details__list">
+          <li class="details__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v18M5 12h14"/><circle cx="12" cy="12" r="9"/></svg>
+            <p>ALCOHOL FREE</p>
+          </li>
+          <li class="details__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M8 8h8"/></svg>
+            <p>5 G · POCKET SIZE</p>
+          </li>
+          <li class="details__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c1.5-4 4-6 7-6s5.5 2 7 6"/></svg>
+            <p>UNISEX</p>
+          </li>
+          <li class="details__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <p>LONG LASTING</p>
+          </li>
+        </ul>
+      </section>
+    </div>
 
     <!-- community -->
     <section class="community">
       <h2 class="community__title">Your scent. <em>Your</em> story.</h2>
       <p class="community__sub">tag us. we repost the good ones.</p>
       <div class="community__grid">
-        <figure class="community__cell"><img src="https://placehold.co/500x500/0A0A0A/FFFFFF?text=500%C3%97500" alt="Community photo placeholder" loading="lazy"></figure>
-        <figure class="community__cell"><img src="https://placehold.co/500x500/E96213/0A0A0A?text=500%C3%97500" alt="Community photo placeholder" loading="lazy"></figure>
-        <figure class="community__cell"><img src="https://placehold.co/500x500/FFFFFF/0A0A0A?text=500%C3%97500" alt="Community photo placeholder" loading="lazy"></figure>
-        <figure class="community__cell"><img src="https://placehold.co/500x500/0A0A0A/E96213?text=500%C3%97500" alt="Community photo placeholder" loading="lazy"></figure>
+        <figure class="community__cell"><img src="assets/community/comm-1.jpg" alt="CH24 Community photo - scent profile" loading="lazy"></figure>
+        <figure class="community__cell"><img src="assets/community/comm-2.jpg" alt="CH24 Community photo - solid perfume stick" loading="lazy"></figure>
+        <figure class="community__cell"><img src="assets/community/comm-3.jpg" alt="CH24 Community photo - pocket setup" loading="lazy"></figure>
+        <figure class="community__cell"><img src="assets/community/comm-4.jpg" alt="CH24 Community photo - daily carry" loading="lazy"></figure>
       </div>
     </section>
 
@@ -270,11 +320,12 @@
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__signup">
+        <img class="footer__logo footer__logo--small" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
         <p class="footer__hook">First drops go to the list.</p>
         <form class="footer__form" action="#" method="post">
           <label class="visually-hidden" for="email">Email</label>
           <input id="email" type="email" name="email" placeholder="your email" required>
-          <button class="btn btn--white" type="submit">Join</button>
+          <button class="btn btn--orange" type="submit">Join</button>
         </form>
       </div>
       <nav class="footer__col" aria-label="Shop">
@@ -296,7 +347,6 @@
         <a href="terms.html">Terms &amp; conditions</a>
       </nav>
     </div>
-    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
     <div class="footer__bar">
       <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
       <p>SCENT IS IDENTITY. NOT OCCASION.</p>

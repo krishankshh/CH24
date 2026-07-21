@@ -1,0 +1,344 @@
+{%- liquid
+  assign product_id = product.handle | replace: 'take-me-out-', ''
+  assign current_tone = '#61D6C4'
+  assign tone_name = 'Scent'
+  assign notes = product.description
+  assign perfect_for = 'Daily Carry'
+
+  for block in section.blocks
+    if block.settings.product.handle == product.handle
+      assign product_id = block.settings.scent_id
+      assign current_tone = block.settings.tone
+    endif
+  endfor
+
+  case product_id
+    when 'ocean' or 'ocean-rush'
+      assign product_id = 'ocean'
+      assign current_tone = '#61D6C4'
+      assign tone_name = 'Aqua Notes'
+      assign notes = 'Aqua Notes · Jasmine · Patchouli'
+      assign perfect_for = 'Office · Day · Gym'
+    when 'pistachio' or 'nutty-pistachio'
+      assign product_id = 'pistachio'
+      assign current_tone = '#85AF67'
+      assign tone_name = 'Pistachio'
+      assign notes = 'Pistachio · Almond · Woody'
+      assign perfect_for = 'Day Out · Party · Movie'
+    when 'vanilla' or 'vanilla-bean'
+      assign product_id = 'vanilla'
+      assign current_tone = '#E9C7AC'
+      assign tone_name = 'Vanilla'
+      assign notes = 'Vanilla · Amber · Warm Spice'
+      assign perfect_for = 'Date · Coffee · Evening'
+    when 'oud' or 'oud-affair'
+      assign product_id = 'oud'
+      assign current_tone = '#533C2C'
+      assign tone_name = 'Oud'
+      assign notes = 'Agarwood · Oud · Vanilla'
+      assign perfect_for = 'Night · Evening · Wedding'
+  endcase
+
+  assign gallery_images = product.images
+  assign gallery_count = gallery_images.size
+-%}
+
+<div class="section--light">
+  <!-- Scent Swatch Switcher (Shopify Link Navigation) -->
+  <div style="padding: 1rem var(--gutter); border-bottom:var(--grid-border-light); background:var(--cream); display:flex; justify-content:center; align-items:center;">
+    <div class="scent-switcher" style="border:none; margin:0; padding:0">
+      <span class="scent-switcher__label" style="color:var(--cream-ink); margin-right:1rem">CHOOSE FRAGRANCE:</span>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.product != blank -%}
+          <a class="scent-switcher__swatch{% if block.settings.product.handle == product.handle %} is-active{% endif %}" href="{{ block.settings.product.url }}" style="--scent:{{ block.settings.tone }}; display:inline-block;" aria-label="{{ block.settings.product.title }}"></a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- Dual-Track Scroll Sequence -->
+  <div class="unbox-layout stage-1">
+    <!-- Left Sticky Frame -->
+    <div class="unbox-sticky" style="background:rgba(23, 20, 16, 0.02)">
+      <div class="unbox-visual-frame">
+        <!-- Stage 1 Image: Closed Box -->
+        {%- if section.settings.image_box != blank -%}
+          <img class="unbox-element" data-layer="box" src="{{ section.settings.image_box | image_url: width: 800 }}" alt="{{ product.title | escape }} closed box" width="{{ section.settings.image_box.width }}" height="{{ section.settings.image_box.height }}">
+        {%- else -%}
+          <img class="unbox-element" data-layer="box" src="{{ 'box-front.jpg' | asset_url }}" alt="{{ product.title | escape }} closed box" width="800" height="800">
+        {%- endif -%}
+
+        <!-- Stage 2 Image: Tray Pull Out -->
+        {%- if section.settings.image_pull != blank -%}
+          <img class="unbox-element" data-layer="tray" src="{{ section.settings.image_pull | image_url: width: 800 }}" alt="{{ product.title | escape }} drawer pulled out" width="{{ section.settings.image_pull.width }}" height="{{ section.settings.image_pull.height }}">
+        {%- else -%}
+          <img class="unbox-element" data-layer="tray" src="{{ 'ritual-pull-out.jpg' | asset_url }}" alt="{{ product.title | escape }} drawer pulled out" width="800" height="800">
+        {%- endif -%}
+
+        <!-- Stage 3 Image: Scent Stick In Tray -->
+        {%- if gallery_count > 0 -%}
+          <img class="unbox-element" data-layer="stick" src="{{ gallery_images[0] | image_url: width: 800 }}" alt="{{ product.title | escape }} stick visual" width="{{ gallery_images[0].width }}" height="{{ gallery_images[0].height }}">
+        {%- else -%}
+          {%- assign fallback_img = 'product-ocean-rush.jpg' -%}
+          {%- case product_id -%}
+            {%- when 'pistachio' -%}
+              {%- assign fallback_img = 'product-nutty-pistachio.jpg' -%}
+            {%- when 'vanilla' -%}
+              {%- assign fallback_img = 'product-vanilla-bean.jpg' -%}
+            {%- when 'oud' -%}
+              {%- assign fallback_img = 'product-oud-affair.jpg' -%}
+          {%- endcase -%}
+          <img class="unbox-element" data-layer="stick" src="{{ fallback_img | asset_url }}" alt="{{ product.title | escape }} stick visual" width="1000" height="1250">
+        {%- endif -%}
+
+        <!-- Stage 4 Image: Capped Off Ready -->
+        {%- if gallery_count > 1 -%}
+          <img class="unbox-element" data-layer="uncapped" src="{{ gallery_images[1] | image_url: width: 800 }}" alt="{{ product.title | escape }} stick open" width="{{ gallery_images[1].width }}" height="{{ gallery_images[1].height }}">
+        {%- else -%}
+          {%- assign fallback_loose = 'loose-ocean-rush.jpg' -%}
+          {%- case product_id -%}
+            {%- when 'pistachio' -%}
+              {%- assign fallback_loose = 'loose-nutty-pistachio.jpg' -%}
+            {%- when 'vanilla' -%}
+              {%- assign fallback_loose = 'loose-vanilla-bean.jpg' -%}
+            {%- when 'oud' -%}
+              {%- assign fallback_loose = 'loose-oud-affair.jpg' -%}
+          {%- endcase -%}
+          <img class="unbox-element" data-layer="uncapped" src="{{ fallback_loose | asset_url }}" alt="{{ product.title | escape }} stick open" width="1000" height="1250">
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Right Scroll Stages -->
+    <div class="unbox-scroll" style="color:var(--cream-ink)">
+      <!-- Stage 1 -->
+      <div class="unbox-stage" data-stage-trigger="1">
+        <p class="unbox-stage__k">01 · THE COVER</p>
+        <h1 class="unbox-stage__title" style="color:var(--cream-ink)">{{ section.settings.stage_1_title }}</h1>
+        <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75)">{{ section.settings.stage_1_text }}</p>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="unbox-stage" data-stage-trigger="2">
+        <p class="unbox-stage__k">02 · THE SLIDE</p>
+        <h1 class="unbox-stage__title" style="color:var(--cream-ink)">{{ section.settings.stage_2_title }}</h1>
+        <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75)">{{ section.settings.stage_2_text }}</p>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="unbox-stage" data-stage-trigger="3">
+        <p class="unbox-stage__k">03 · {{ tone_name | upcase }}</p>
+        <h1 class="unbox-stage__title" style="color:var(--cream-ink)">{{ product.title }}</h1>
+        {%- if notes != blank -%}
+          <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75)">Notes: {{ notes }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="unbox-stage" data-stage-trigger="4">
+        <p class="unbox-stage__k">04 · READY</p>
+        <h1 class="unbox-stage__title" style="color:var(--cream-ink)">{{ section.settings.stage_4_title }}</h1>
+        <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75); margin-bottom:1rem; font-weight:bold">Perfect for: {{ perfect_for }}</p>
+        <p class="spec-line" style="color:var(--orange)">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+        
+        <p style="font-size:2.5rem; font-weight:900; color:var(--cream-ink); font-family:var(--font-display); margin-top:1.5rem">
+          {{ section.settings.pack_price_display }}
+        </p>
+        <p style="font-size:0.88rem; color:rgba(23, 20, 16, 0.6); margin-bottom:2rem">
+          {{ section.settings.price_note }}
+        </p>
+
+        <div class="unbox-stage__actions">
+          <button class="btn btn--orange" type="button" data-pd2-add data-id="{{ product_id }}">Add to cart</button>
+          <a class="btn btn--ghost" href="#complete" style="color:var(--cream-ink); border-color:rgba(23, 20, 16, 0.3)">View Scent Mix</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complete / Cross-sell Section -->
+  <section class="pair-section" id="complete" style="color:var(--cream-ink)">
+    <h2 class="pair-section__title" style="color:var(--cream-ink)">{{ section.settings.complete_title }}</h2>
+    <p class="pair-section__sub">{{ section.settings.complete_subtitle }}</p>
+
+    <div class="sleeve-grid" data-pd2-others>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.product != blank and block.settings.product.handle != product.handle -%}
+          {% render 'box-card', product: block.settings.product, tone: block.settings.tone, ink: block.settings.ink, mood_tag: block.settings.mood_tag, scent_id: block.settings.scent_id %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+<script>
+  window.CH24_SHOPIFY_VARIANTS = window.CH24_SHOPIFY_VARIANTS || {};
+  window.CH24_SHOPIFY_TITLES = window.CH24_SHOPIFY_TITLES || {};
+  {%- for block in section.blocks -%}
+    {%- if block.settings.product != blank -%}
+      {%- if block.settings.product.first_available_variant != blank -%}
+        window.CH24_SHOPIFY_VARIANTS["{{ block.settings.scent_id }}"] = "{{ block.settings.product.first_available_variant.id }}";
+      {%- endif -%}
+      window.CH24_SHOPIFY_TITLES["{{ block.settings.scent_id }}"] = {{ block.settings.product.title | json }};
+    {%- endif -%}
+  {%- endfor -%}
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Add product details click handler
+    const addBtn = document.querySelector("[data-pd2-add]");
+    if (addBtn) {
+      addBtn.addEventListener("click", () => {
+        window.CH24_addToCart && window.CH24_addToCart(addBtn.dataset.id);
+      });
+    }
+
+    // GSAP ScrollTrigger Sequence classes mapping
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      const layout = document.querySelector(".unbox-layout");
+      document.querySelectorAll("[data-stage-trigger]").forEach(trigger => {
+        const stageNum = trigger.dataset.stageTrigger;
+        ScrollTrigger.create({
+          trigger: trigger,
+          start: "top center",
+          end: "bottom center",
+          onToggle: (self) => {
+            if (self.isActive) {
+              layout.className = `unbox-layout stage-${stageNum}`;
+            }
+          }
+        });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Detail Layout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Stage Images (Universal)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_box",
+      "label": "Stage 1: Closed Box Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_pull",
+      "label": "Stage 2: Slide Open Image"
+    },
+    {
+      "type": "header",
+      "content": "Unboxing Stage Texts"
+    },
+    {
+      "type": "text",
+      "id": "stage_1_title",
+      "label": "Stage 1 Title",
+      "default": "Take Me Out."
+    },
+    {
+      "type": "text",
+      "id": "stage_1_text",
+      "label": "Stage 1 Text",
+      "default": "A clean, tactile outer cover designed to stand out. Built to carry, built for now. Every solid fragrance stick in Pack 01 starts exactly here."
+    },
+    {
+      "type": "text",
+      "id": "stage_2_title",
+      "label": "Stage 2 Title",
+      "default": "Slide open."
+    },
+    {
+      "type": "text",
+      "id": "stage_2_text",
+      "label": "Stage 2 Text",
+      "default": "One direct slide reveal. People take notice of the drawer interaction before you have applied a single stroke."
+    },
+    {
+      "type": "text",
+      "id": "stage_4_title",
+      "label": "Stage 4 Title",
+      "default": "Cap off. Swipe."
+    },
+    {
+      "type": "text",
+      "id": "pack_price_display",
+      "label": "Pack Price (display)",
+      "default": "₹499"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price Details Note",
+      "default": "Pack of two. This scent plus any second one you pick below."
+    },
+    {
+      "type": "header",
+      "content": "Cross-sell Pair Builder"
+    },
+    {
+      "type": "text",
+      "id": "complete_title",
+      "label": "Pair Grid Title",
+      "default": "More to explore."
+    },
+    {
+      "type": "text",
+      "id": "complete_subtitle",
+      "label": "Pair Grid Subtitle",
+      "default": "Add as many scents as you like, all in one bag."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scent",
+      "name": "Scent",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "scent_id",
+          "label": "Scent Key (ocean, pistachio, vanilla, oud)",
+          "info": "Must be unique per block and match the same product's key on the homepage grid and shop page for the pair-picker to work.",
+          "default": "ocean"
+        },
+        {
+          "type": "text",
+          "id": "mood_tag",
+          "label": "Mood Tag (e.g. OFFICE, PARTY, DATE, NIGHT)",
+          "default": "OFFICE"
+        },
+        {
+          "type": "color",
+          "id": "tone",
+          "label": "Swatch / Card Color",
+          "default": "#61D6C4"
+        },
+        {
+          "type": "color",
+          "id": "ink",
+          "label": "Text Color on Card",
+          "default": "#0A0A0A"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "scent", "settings": { "scent_id": "ocean", "mood_tag": "OFFICE", "tone": "#61D6C4", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "pistachio", "mood_tag": "PARTY", "tone": "#85AF67", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "vanilla", "mood_tag": "DATE", "tone": "#E9C7AC", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "oud", "mood_tag": "NIGHT", "tone": "#533C2C", "ink": "#FFFFFF" } }
+    ]
+  }
+}
+{% endschema %}

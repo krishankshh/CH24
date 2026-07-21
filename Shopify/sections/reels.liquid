@@ -1,0 +1,49 @@
+<section class="community">
+  <h2 class="community__title">{{ section.settings.title }}</h2>
+  <p class="community__sub">{{ section.settings.subtitle | downcase }}</p>
+
+  <div class="community__reels-wrapper" style="margin-top: 2rem;">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+      {%- endcase -%}
+    {%- endfor -%}
+
+    {%- if section.blocks.size == 0 -%}
+      <div style="padding: 4rem 2rem; border: 2px dashed rgba(255,255,255,0.15); border-radius: 12px; text-align: center; color: rgba(255,255,255,0.5); font-family: var(--font-display); font-size: 0.9rem;">
+        <p>Integrate your Reels Feed App here by adding an App block in the Shopify Theme Editor.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Social Reels Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Your scent. Your story."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "tag us. we repost the good ones."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Reels Section"
+    }
+  ]
+}
+{% endschema %}

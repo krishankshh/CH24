@@ -1,0 +1,46 @@
+{% comment %}
+  Slide-in bag drawer. Bag icon in header.liquid (data-cart-toggle) opens
+  this instead of navigating to the real /cart page. Server-rendered from
+  `cart` for a correct first paint / no-JS fallback; site.js re-fetches
+  /cart.js to keep it live after any add/change/remove.
+{% endcomment %}
+<aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+  <div class="cart-drawer__head">
+    <p class="cart-drawer__title">Your bag</p>
+    <button class="cart-drawer__close" type="button" data-cart-close aria-label="Close bag">&times;</button>
+  </div>
+  <div class="cart-drawer__body" data-cart-body>
+    {%- if cart.item_count == 0 -%}
+      <p class="cart-drawer__empty">Your bag is empty.</p>
+    {%- else -%}
+      <ul class="cart-drawer__items">
+        {%- for item in cart.items -%}
+          <li class="cart-drawer__item" data-line-key="{{ item.key }}">
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
+            <div class="cart-drawer__item-info">
+              <p class="cart-drawer__item-title">{{ item.product.title }}</p>
+              {%- if item.variant.title != 'Default Title' -%}
+                <p class="cart-drawer__item-variant">{{ item.variant.title }}</p>
+              {%- endif -%}
+              <div class="cart-drawer__item-qty">
+                <button type="button" data-qty-decrease aria-label="Decrease quantity">&minus;</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" data-qty-increase aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+            <p class="cart-drawer__item-price">{{ item.final_line_price | money }}</p>
+            <button class="cart-drawer__item-remove" type="button" data-remove aria-label="Remove">&times;</button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+  <div class="cart-drawer__foot">
+    <div class="cart-drawer__subtotal">
+      <span>Subtotal</span>
+      <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+    </div>
+    <a class="btn btn--orange cart-drawer__checkout" href="{{ routes.cart_url }}" data-cart-checkout {% if cart.item_count == 0 %}aria-disabled="true"{% endif %}>Checkout</a>
+  </div>
+</aside>
+<div class="cart-drawer__backdrop" data-cart-backdrop></div>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take Me Out — solid perfume stick | CH24</title>
+  <meta name="description" content="A 5g solid perfume stick in a flip-top box. Alcohol free, unisex, long lasting. ₹499 for a pack of two.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="section--light">
+
+  <!-- Top Announcement Ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- Grid Header Navigation -->
+  <div class="nav-container">
+    <header class="nav" style="background:var(--cream); color:var(--cream-ink); border-bottom:var(--grid-border-light)">
+      <a class="nav__logo" href="index.html" aria-label="CH24 home" style="border-right:var(--grid-border-light)">
+        <img src="assets/logo-white.png" alt="CH24 Logo" width="80" height="46">
+      </a>
+      <nav class="nav__links" aria-label="Main Navigation">
+        <a href="shop.html" style="border-right:var(--grid-border-light)">Shop</a>
+        <a href="about.html" style="border-right:var(--grid-border-light)">About</a>
+        <a href="faq.html" style="border-right:var(--grid-border-light)">FAQ</a>
+        <a href="contact.html" style="border-right:var(--grid-border-light)">Contact</a>
+      </nav>
+      <a class="nav__cart" href="checkout.html" style="border-left:var(--grid-border-light)">Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
+    </header>
+  </div>
+
+  <main>
+    <!-- Switcher Bar for Scent Selection -->
+    <div style="padding: 1rem var(--gutter); border-bottom:var(--grid-border-light); background:var(--cream); display:flex; justify-content:center; align-items:center;">
+      <div class="scent-switcher" style="border:none; margin:0; padding:0">
+        <span class="scent-switcher__label" style="color:var(--cream-ink); margin-right:1rem">CHOOSE FRAGRANCE:</span>
+        <button class="scent-switcher__swatch" type="button" data-switch="ocean" style="--scent:var(--scent-ocean)" aria-label="Ocean Rush"></button>
+        <button class="scent-switcher__swatch" type="button" data-switch="pistachio" style="--scent:var(--scent-pistachio)" aria-label="Nutty Pistachio"></button>
+        <button class="scent-switcher__swatch" type="button" data-switch="vanilla" style="--scent:var(--scent-vanilla)" aria-label="Vanilla Bean"></button>
+        <button class="scent-switcher__swatch" type="button" data-switch="oud" style="--scent:var(--scent-oud)" aria-label="Oud Affair"></button>
+      </div>
+    </div>
+
+    <!-- Dual-Track Scroll Sequence -->
+    <div class="unbox-layout stage-1">
+      <!-- Left Sticky Panel -->
+      <div class="unbox-sticky" style="background:rgba(23, 20, 16, 0.02)">
+        <div class="unbox-visual-frame">
+          <!-- Step 1 Layer: Closed Box -->
+          <img class="unbox-element" data-layer="box" src="assets/products/box-front.jpg" alt="CH24 Pack 01 outer box container">
+          <!-- Step 2 Layer: Sliding Tray -->
+          <img class="unbox-element" data-layer="tray" src="assets/products/ritual-pull-out.jpg" alt="CH24 tray compartment slide reveal">
+          <!-- Step 3 Layer: Scent Stick In Tray -->
+          <img class="unbox-element" data-layer="stick" src="assets/products/product-ocean-rush.jpg" id="layer-stick" alt="CH24 solid stick chamber">
+          <!-- Step 4 Layer: Scent Stick Capped Off -->
+          <img class="unbox-element" data-layer="uncapped" src="assets/products/loose-ocean-rush.jpg" id="layer-uncapped" alt="CH24 solid stick uncap application">
+        </div>
+      </div>
+
+      <!-- Right Scroll Track -->
+      <div class="unbox-scroll" style="color:var(--cream-ink)">
+        <!-- Stage 1 -->
+        <div class="unbox-stage" data-stage-trigger="1">
+          <p class="unbox-stage__k">01 · THE COVER</p>
+          <h1 class="unbox-stage__title" style="color:var(--cream-ink)">Take Me Out.</h1>
+          <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75)">A clean, tactile outer cover designed to stand out. Built to carry, built for now. Every solid fragrance stick in Pack 01 starts exactly here.</p>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="unbox-stage" data-stage-trigger="2">
+          <p class="unbox-stage__k">02 · THE SLIDE</p>
+          <h1 class="unbox-stage__title" style="color:var(--cream-ink)">Slide open.</h1>
+          <p class="unbox-stage__text" style="color:rgba(23, 20, 16, 0.75)">One direct slide reveal. People take notice of the drawer interaction before you have applied a single stroke. Carrying scent is an experience.</p>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="unbox-stage" data-stage-trigger="3">
+          <p class="unbox-stage__k" id="dynamic-stage-flag">03 · OCEAN RUSH</p>
+          <h1 class="unbox-stage__title" id="dynamic-title" style="color:var(--cream-ink)">Ocean Rush</h1>
+          <p class="unbox-stage__text" id="dynamic-notes" style="color:rgba(23, 20, 16, 0.75)">Notes: Aqua Notes · Jasmine · Patchouli</p>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="unbox-stage" data-stage-trigger="4">
+          <p class="unbox-stage__k">04 · READY</p>
+          <h1 class="unbox-stage__title" style="color:var(--cream-ink)">Cap off. Swipe.</h1>
+          <p class="unbox-stage__text" id="dynamic-perfect-for" style="color:rgba(23, 20, 16, 0.75); margin-bottom:1rem; font-weight:bold">Perfect for: Office · Day · Gym</p>
+          <p class="spec-line" style="color:var(--orange)">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+          <p style="font-size:2.5rem; font-weight:900; color:var(--cream-ink); font-family:var(--font-display); margin-top:1.5rem">₹499</p>
+          <p style="font-size:0.88rem; color:rgba(23, 20, 16, 0.6); margin-bottom:2rem">Pack of two. This scent plus any second choice of your mix.</p>
+          
+          <div class="unbox-stage__actions">
+            <button class="btn btn--orange" type="button" data-pd2-add>Add to pair</button>
+            <a class="btn btn--ghost" href="#complete" style="color:var(--cream-ink); border-color:rgba(23, 20, 16, 0.3)">View Scent Mix</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete Your Pair Grid Section -->
+    <section class="pair-section" id="complete" style="color:var(--cream-ink)">
+      <h2 class="pair-section__title" style="color:var(--cream-ink)">Select your second stick.</h2>
+      <p class="pair-section__sub">Take Me Out is always sold as two. Pick the second choice right below.</p>
+      
+      <div class="sleeve-grid" data-pd2-others>
+        <!-- Injected dynamically via script -->
+      </div>
+    </section>
+
+    <!-- Slide-Up Drawer for Selected Scent Pair -->
+    <aside class="pairbar-v3" data-pairbar aria-live="polite" aria-atomic="true">
+      <p class="pairbar-v3__label" style="color:var(--white)">Your pair <span class="pairbar-v3__names" data-pair-names>: pick two</span></p>
+      <a class="pairbar-v3__cta" href="checkout.html" data-pair-cta aria-disabled="true">Checkout · ₹499</a>
+    </aside>
+  </main>
+
+  <!-- Grid Footer -->
+  <footer class="footer-v3" style="border-top:var(--grid-border-light)">
+    <div class="footer-v3__grid" style="border-bottom-color:rgba(23, 20, 16, 0.15)">
+      <div class="footer-v3__col" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <img class="footer-v3__logo" src="assets/logo-white.png" alt="CH24 Logo" loading="lazy">
+        <p class="footer-v3__hook" style="color:rgba(255, 255, 255, 0.8)">First drops go to the list.</p>
+        <form class="footer-v3__form" action="#" method="post">
+          <label class="visually-hidden" for="newsletter-email">Email Address</label>
+          <input class="footer-v3__input" id="newsletter-email" type="email" name="email" placeholder="your email" required style="border-color:rgba(255,255,255,0.15)">
+          <button class="btn btn--orange" type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer-v3__col" aria-label="Shop Navigation" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <p class="footer-v3__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+        <a href="checkout.html">Your bag</a>
+      </nav>
+      <nav class="footer-v3__col" aria-label="Company Navigation" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <p class="footer-v3__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer-v3__col" aria-label="Legal Navigation">
+        <p class="footer-v3__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <div class="footer-v3__bar" style="color:rgba(23, 20, 16, 0.45)">
+      <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
+      <p>SCENT IS IDENTITY. NOT OCCASION.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/site.js"></script>
+  <script>
+    (() => {
+      const stickImg = document.getElementById("layer-stick");
+      const uncappedImg = document.getElementById("layer-uncapped");
+      let currentId = new URLSearchParams(location.search).get("p");
+      if (!CH24_PRODUCTS[currentId]) currentId = "ocean";
+
+      function renderOthers() {
+        const rail = document.querySelector("[data-pd2-others]");
+        if (!rail) return;
+        rail.innerHTML = "";
+        Object.keys(CH24_PRODUCTS).filter(k => k !== currentId).forEach(k => {
+          const o = CH24_PRODUCTS[k];
+          const wrap = document.createElement("div");
+          wrap.className = "sleeve-card";
+          wrap.dataset.scent = k;
+          wrap.dataset.id = k;
+          wrap.style.setProperty("--scent", `var(--scent-${k})`);
+          wrap.style.borderColor = "rgba(23, 20, 16, 0.15)";
+          
+          wrap.innerHTML = `
+            <a class="sleeve-card__link" href="product.html?p=${k}" style="border-bottom-color:rgba(23, 20, 16, 0.15)">
+              <div class="sleeve-card__inner">
+                <div class="sleeve-card__tray">
+                  <img src="${o.img}" alt="${o.name} solid perfume stick">
+                </div>
+                <div class="sleeve-card__cover">
+                  <span class="sleeve-card__flag">${o.mood.toUpperCase()}</span>
+                  <p class="sleeve-card__scent-title">${o.name.toUpperCase()}</p>
+                  <p class="sleeve-card__brand">CH24</p>
+                </div>
+              </div>
+            </a>
+            <div class="sleeve-card__info" style="color:var(--cream-ink)">
+              <h3 class="sleeve-card__name">${o.name}</h3>
+              <p class="spec-line">${o.notes.toUpperCase()}</p>
+              <div class="sleeve-card__actions">
+                <button class="sleeve-card__pick" type="button" style="border-color:rgba(23, 20, 16, 0.2); color:var(--cream-ink)">Add to pair</button>
+              </div>
+            </div>`;
+          rail.appendChild(wrap);
+        });
+        wireCardPickButtons(rail);
+        renderPair();
+      }
+
+      function render(id, { push = false } = {}) {
+        const p = CH24_PRODUCTS[id];
+        currentId = id;
+
+        document.title = `${p.name} — Take Me Out solid perfume stick | CH24`;
+        stickImg.src = p.img;
+        stickImg.alt = `${p.name} solid perfume stick`;
+        
+        // Use loose detail or original image for cap off stage
+        uncappedImg.src = p.loose || `assets/products/loose-${id}.jpg`;
+        uncappedImg.alt = `${p.name}, cap off`;
+
+        document.getElementById("dynamic-stage-flag").textContent = `03 · ${p.name.toUpperCase()}`;
+        document.getElementById("dynamic-title").textContent = p.name;
+        document.getElementById("dynamic-notes").textContent = `Notes: ${p.notes}`;
+        document.getElementById("dynamic-perfect-for").textContent = `Perfect for: ${p.perfectFor}`;
+
+        const add = document.querySelector("[data-pd2-add]");
+        if (add) {
+          add.dataset.id = id;
+          const isPicked = getPair().includes(id);
+          add.textContent = isPicked ? "In your pair" : "Add to pair";
+          add.className = isPicked ? "btn btn--white" : "btn btn--orange";
+        }
+
+        document.querySelectorAll(".scent-switcher__swatch").forEach(s => {
+          s.classList.toggle("is-active", s.dataset.switch === id);
+        });
+
+        renderOthers();
+
+        if (push) {
+          history.replaceState(null, "", `product.html?p=${id}`);
+        }
+
+        // Add search schema
+        document.querySelectorAll('script[data-pd2-ld]').forEach(n => n.remove());
+        const ld = document.createElement("script");
+        ld.type = "application/ld+json";
+        ld.dataset.pd2Ld = "1";
+        ld.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": `Take Me Out ${p.name} — solid perfume stick`,
+          "brand": { "@type": "Brand", "name": "CH24" },
+          "description": `5g solid perfume stick in a packaging sleeve. Notes: ${p.notes}. Alcohol free, unisex, long lasting. Sold as a pack of two for ₹499.`,
+          "offers": { "@type": "Offer", "priceCurrency": "INR", "price": "499", "availability": "https://schema.org/InStock" }
+        });
+        document.head.appendChild(ld);
+      }
+
+      document.querySelector("[data-pd2-add]").addEventListener("click", (e) => {
+        togglePick(e.currentTarget.dataset.id);
+        const isPicked = getPair().includes(e.currentTarget.dataset.id);
+        e.currentTarget.textContent = isPicked ? "In your pair" : "Add to pair";
+        e.currentTarget.className = isPicked ? "btn btn--white" : "btn btn--orange";
+      });
+
+      document.querySelectorAll(".scent-switcher__swatch").forEach(s => {
+        s.addEventListener("click", () => render(s.dataset.switch, { push: true }));
+      });
+
+      render(currentId);
+
+      // GSAP scroll trigger sequences mapping the classes stage-1, stage-2, stage-3, stage-4 on scroll
+      gsap.registerPlugin(ScrollTrigger);
+      const layout = document.querySelector(".unbox-layout");
+      document.querySelectorAll("[data-stage-trigger]").forEach(trigger => {
+        const stageNum = trigger.dataset.stageTrigger;
+        ScrollTrigger.create({
+          trigger: trigger,
+          start: "top center",
+          end: "bottom center",
+          onToggle: (self) => {
+            if (self.isActive) {
+              layout.className = `unbox-layout stage-${stageNum}`;
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

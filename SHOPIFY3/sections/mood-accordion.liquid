@@ -1,0 +1,110 @@
+<section class="mood-v3" id="mood">
+  <div class="mood-v3__list">
+    <div class="mood-v3__head">
+      <p class="eyebrow">{{ section.settings.eyebrow | upcase }}</p>
+      <h2 class="title-medium">{{ section.settings.title }}</h2>
+    </div>
+    {%- for block in section.blocks -%}
+      <div class="mood-v3__item{% if forloop.first %} is-active{% endif %}" data-scent="{{ block.settings.mood_key }}" tabindex="0" {{ block.shopify_attributes }}>
+        <span class="mood-v3__item-label">0{{ forloop.index }} {{ block.settings.title | upcase }}</span>
+        <span class="mood-v3__item-scent">{{ block.settings.scent_name }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <div class="mood-v3__display">
+    {%- for block in section.blocks -%}
+      <div class="mood-v3__pane{% if forloop.first %} is-active{% endif %}" data-scent="{{ block.settings.mood_key }}">
+        {%- if block.settings.image != blank -%}
+          <img class="mood-v3__bg" src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }} background" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}">
+        {%- else -%}
+          {%- assign fallback_img = 'loose-ocean-rush.jpg' -%}
+          {%- case block.settings.mood_key -%}
+            {%- when 'pistachio' -%}
+              {%- assign fallback_img = 'loose-nutty-pistachio.jpg' -%}
+            {%- when 'vanilla' -%}
+              {%- assign fallback_img = 'loose-vanilla-bean.jpg' -%}
+            {%- when 'oud' -%}
+              {%- assign fallback_img = 'loose-oud-affair.jpg' -%}
+          {%- endcase -%}
+          <img class="mood-v3__bg" src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title | escape }} background" loading="lazy" width="800" height="800">
+        {%- endif -%}
+        <div class="mood-v3__content">
+          <p class="eyebrow">MOOD 0{{ forloop.index }} · {{ block.settings.title | upcase }}</p>
+          <h3 class="mood-v3__title">{{ block.settings.scent_name }}</h3>
+          <p class="mood-v3__notes">{{ block.settings.scent_notes }}</p>
+          <a class="mood-v3__cta" href="#shop" data-mood-pick="{{ block.settings.mood_key }}">Shop this scent</a>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mood Scent Accordion",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "PICK YOUR MOMENT"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What's the mood?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Moment Panel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Moment Name (e.g. Office)",
+          "default": "Office"
+        },
+        {
+          "type": "text",
+          "id": "scent_name",
+          "label": "Fragrance Scent Name",
+          "default": "Ocean Rush"
+        },
+        {
+          "type": "text",
+          "id": "scent_notes",
+          "label": "Fragrance Notes Key",
+          "default": "Aqua Notes · Jasmine · Patchouli"
+        },
+        {
+          "type": "text",
+          "id": "mood_key",
+          "label": "Scent Identifier Key (e.g. ocean, pistachio, vanilla, oud)",
+          "default": "ocean"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Panel Background Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mood Scent Accordion",
+      "blocks": [
+        { "type": "panel", "settings": { "title": "Office", "scent_name": "Ocean Rush", "scent_notes": "Aqua Notes · Jasmine · Patchouli", "mood_key": "ocean" } },
+        { "type": "panel", "settings": { "title": "Date", "scent_name": "Vanilla Bean", "scent_notes": "Vanilla · Amber · Warm Spice", "mood_key": "vanilla" } },
+        { "type": "panel", "settings": { "title": "Night", "scent_name": "Oud Affair", "scent_notes": "Agarwood · Oud · Vanilla", "mood_key": "oud" } },
+        { "type": "panel", "settings": { "title": "Party", "scent_name": "Nutty Pistachio", "scent_notes": "Pistachio · Almond · Woody", "mood_key": "pistachio" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

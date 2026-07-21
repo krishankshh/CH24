@@ -1,0 +1,54 @@
+<div class="details-wrap">
+  <section class="details">
+    <ul class="details__list">
+      {%- for block in section.blocks -%}
+        <li class="details__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- else -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          {%- endif -%}
+          <p>{{ block.settings.title | upcase }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Specifications Bar",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Specification Highlight",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Highlight Title",
+          "default": "ALCOHOL FREE"
+        },
+        {
+          "type": "html",
+          "id": "svg_code",
+          "label": "Highlight SVG Icon Code"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Specifications Bar",
+      "blocks": [
+        { "type": "detail", "settings": { "title": "ALCOHOL FREE", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M12 3v18M5 12h14\"/><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>" } },
+        { "type": "detail", "settings": { "title": "5 G · POCKET SIZE", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><rect x=\"8\" y=\"3\" width=\"8\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8\"/></svg>" } },
+        { "type": "detail", "settings": { "title": "UNISEX", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M5 21c1.5-4 4-6 7-6s5.5 2 7 6\"/></svg>" } },
+        { "type": "detail", "settings": { "title": "LONG LASTING", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 3\"/></svg>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

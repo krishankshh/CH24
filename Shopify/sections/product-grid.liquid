@@ -1,0 +1,122 @@
+<section class="shop" id="shop">
+  <header class="shop__head">
+    <div>
+      <h2 class="shop__title">{{ section.settings.title_left }} <span class="shop__pack">{{ section.settings.title_accent }}</span></h2>
+      <p class="shop__sub">{{ section.settings.description }}</p>
+    </div>
+    <button class="shuffle-btn" type="button" data-shuffle>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      {{ section.settings.shuffle_label }}
+    </button>
+  </header>
+
+  <div class="box-grid">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.product != blank -%}
+        {% render 'box-card', product: block.settings.product, tone: block.settings.tone, ink: block.settings.ink, mood_tag: block.settings.mood_tag, scent_id: block.settings.scent_id %}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  window.CH24_SHOPIFY_VARIANTS = window.CH24_SHOPIFY_VARIANTS || {};
+  window.CH24_SHOPIFY_TITLES = window.CH24_SHOPIFY_TITLES || {};
+  {%- for block in section.blocks -%}
+    {%- if block.settings.product != blank -%}
+      {%- if block.settings.product.first_available_variant != blank -%}
+        window.CH24_SHOPIFY_VARIANTS["{{ block.settings.scent_id }}"] = "{{ block.settings.product.first_available_variant.id }}";
+      {%- endif -%}
+      window.CH24_SHOPIFY_TITLES["{{ block.settings.scent_id }}"] = {{ block.settings.product.title | json }};
+    {%- endif -%}
+  {%- endfor -%}
+</script>
+
+{% schema %}
+{
+  "name": "Product Selector Grid",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_left",
+      "label": "Headline Left Text",
+      "default": "Flip it"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Headline Accent Text",
+      "default": "open."
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Showcase description",
+      "default": "Take Me Out, Pack 01. Four fragrances. Pick any two for ₹499."
+    },
+    {
+      "type": "text",
+      "id": "shuffle_label",
+      "label": "Shuffle Button label",
+      "default": "Surprise me"
+    },
+    {
+      "type": "text",
+      "id": "pack_price_display",
+      "label": "Pack Price (display text)",
+      "default": "₹499",
+      "info": "Set each scent's real Shopify price to half this amount so the real cart total matches at checkout."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scent",
+      "name": "Scent",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "scent_id",
+          "label": "Scent Key (ocean, pistachio, vanilla, oud)",
+          "info": "Must be unique per block and match the same product's key on the product page and shop page for the pair-picker to work.",
+          "default": "ocean"
+        },
+        {
+          "type": "text",
+          "id": "mood_tag",
+          "label": "Mood Tag (e.g. OFFICE, PARTY, DATE, NIGHT)",
+          "default": "OFFICE"
+        },
+        {
+          "type": "color",
+          "id": "tone",
+          "label": "Card Color",
+          "default": "#61D6C4"
+        },
+        {
+          "type": "color",
+          "id": "ink",
+          "label": "Text Color on Card",
+          "default": "#0A0A0A"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Selector Grid",
+      "blocks": [
+        { "type": "scent", "settings": { "scent_id": "ocean", "mood_tag": "OFFICE", "tone": "#61D6C4", "ink": "#0A0A0A" } },
+        { "type": "scent", "settings": { "scent_id": "pistachio", "mood_tag": "PARTY", "tone": "#85AF67", "ink": "#0A0A0A" } },
+        { "type": "scent", "settings": { "scent_id": "vanilla", "mood_tag": "DATE", "tone": "#E9C7AC", "ink": "#0A0A0A" } },
+        { "type": "scent", "settings": { "scent_id": "oud", "mood_tag": "NIGHT", "tone": "#533C2C", "ink": "#FFFFFF" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

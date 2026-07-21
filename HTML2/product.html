@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean Rush — Take Me Out solid perfume stick | CH24</title>
+  <meta name="description" content="A 5g solid perfume stick in a flip-top box. Alcohol free, unisex, long lasting. ₹249 each.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="nav">
+    <a class="nav__logo" href="index.html" aria-label="CH24 home">
+      <img src="assets/logo-white.png" alt="CH24" width="90" height="34">
+    </a>
+    <nav class="nav__links" data-nav-links aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a class="nav__cart" href="shop.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+      <button class="nav__toggle" data-nav-toggle aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="pd">
+      <div>
+        <div class="pd__gallery-main">
+          <img data-gallery-main src="assets/products/product-ocean-rush.jpg" alt="Ocean Rush solid perfume stick">
+        </div>
+        <div class="pd__thumbs">
+          <button class="pd__thumb is-active" type="button" data-gallery-thumb="assets/products/product-ocean-rush.jpg"><img src="assets/products/product-ocean-rush.jpg" alt=""></button>
+          <button class="pd__thumb" type="button" data-gallery-thumb="assets/products/loose-ocean-rush.jpg"><img src="assets/products/loose-ocean-rush.jpg" alt=""></button>
+          <button class="pd__thumb" type="button" data-gallery-thumb="assets/products/box-front.jpg"><img src="assets/products/box-front.jpg" alt=""></button>
+          <button class="pd__thumb" type="button" data-gallery-thumb="assets/products/ritual-flip-open.jpg"><img src="assets/products/ritual-flip-open.jpg" alt=""></button>
+        </div>
+      </div>
+
+      <div class="pd__info">
+        <p class="pd__label" data-pd-label style="--tone:#61D6C4">LABEL · AQUA</p>
+        <h1 class="pd__name" data-pd-name>Ocean Rush</h1>
+        <p class="pd__notes" data-pd-notes>Notes: Aqua Notes · Jasmine · Patchouli</p>
+        <p class="pd__perfect" data-pd-perfect>Perfect for: Office · Day · Gym</p>
+        <p class="pd__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+        <p class="pd__price" data-pd-price>₹249</p>
+        <p class="pd__price-note">One 5g stick. Add as many scents as you like — no pack limit.</p>
+
+        <div class="pd__qty" data-qty>
+          <button type="button" data-qty-minus aria-label="Decrease quantity">−</button>
+          <input type="text" value="1" data-qty-input aria-label="Quantity" inputmode="numeric">
+          <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+        </div>
+        <div class="pd__actions">
+          <button class="btn btn--solid" type="button" data-add-to-bag="ocean">Add to bag</button>
+        </div>
+        <p class="pd__desc">The format is the message: pull the box out, flip it open, swipe the stick on pulse points. No spray, no cloud, no asking the room's permission.</p>
+      </div>
+    </div>
+
+    <section class="cross-sell reveal">
+      <h2>More scents</h2>
+      <div class="ticket-grid" data-cross-sell></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <img class="footer__logo" src="assets/logo-white.png" alt="CH24">
+        <p class="footer__hook">First drops go to the list.</p>
+        <form class="footer__form" data-newsletter-form>
+          <label class="visually-hidden" for="nl-email">Email</label>
+          <input id="nl-email" type="email" name="email" placeholder="your email" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer__col" aria-label="Shop">
+        <p class="footer__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <p class="footer__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer__col" aria-label="Legal">
+        <p class="footer__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <div class="footer__bar">
+      <p>© 2026 CH24 · Built in India. Built for now.</p>
+      <p>Scent is identity. Not occasion.</p>
+    </div>
+  </footer>
+
+  <script src="js/main2.js"></script>
+  <script>
+    (() => {
+      const id = new URLSearchParams(location.search).get("p");
+      const key = CH24_PRODUCTS[id] ? id : "ocean";
+      const p = CH24_PRODUCTS[key];
+
+      document.title = `${p.name} — Take Me Out solid perfume stick | CH24`;
+      document.querySelector("[data-pd-label]").textContent = `LABEL · ${p.name.split(" ")[0].toUpperCase()}`;
+      document.querySelector("[data-pd-label]").style.setProperty("--tone", p.tone);
+      document.querySelector("[data-pd-name]").textContent = p.name;
+      document.querySelector("[data-pd-notes]").textContent = `Notes: ${p.notes}`;
+      document.querySelector("[data-pd-perfect]").textContent = `Perfect for: ${p.perfectFor}`;
+      document.querySelector("[data-pd-price]").textContent = `₹${p.price}`;
+
+      const main = document.querySelector("[data-gallery-main]");
+      main.src = p.img;
+      main.alt = `${p.name} solid perfume stick`;
+      const thumbs = document.querySelectorAll("[data-gallery-thumb]");
+      thumbs[0].dataset.galleryThumb = p.img;
+      thumbs[0].querySelector("img").src = p.img;
+      thumbs[1].dataset.galleryThumb = p.loose;
+      thumbs[1].querySelector("img").src = p.loose;
+      thumbs.forEach((t, i) => t.classList.toggle("is-active", i === 0));
+
+      const addBtn = document.querySelector("[data-add-to-bag]");
+      addBtn.dataset.addToBag = key;
+
+      const rail = document.querySelector("[data-cross-sell]");
+      Object.keys(CH24_PRODUCTS).filter(k => k !== key).forEach(k => {
+        const o = CH24_PRODUCTS[k];
+        const el = document.createElement("article");
+        el.className = "ticket";
+        el.innerHTML = `
+          <div class="ticket__img-wrap"><a href="product.html?p=${k}"><img src="${o.img}" alt="${o.name} solid perfume stick"></a></div>
+          <div class="ticket__body">
+            <h3 class="ticket__name"><a href="product.html?p=${k}">${o.name}</a></h3>
+            <p class="ticket__notes"><span class="ticket__swatch" style="--tone:${o.tone}"></span>${o.notes.toUpperCase()}</p>
+            <div class="ticket__foot">
+              <span class="ticket__price">₹${o.price}</span>
+              <button class="ticket__add" type="button" data-add-to-bag="${k}">Add to bag</button>
+            </div>
+          </div>`;
+        rail.appendChild(el);
+      });
+      /* wire the freshly-created cross-sell buttons (main2.js already wired the page on load, before these existed) */
+      rail.querySelectorAll("[data-add-to-bag]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          addToBag(btn.dataset.addToBag, 1);
+          const label = btn.textContent;
+          btn.textContent = "Added";
+          setTimeout(() => { btn.textContent = label; }, 1400);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

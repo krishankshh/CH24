@@ -1,0 +1,178 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "chip_text": "4 scents. Pick 2 for ₹499.",
+        "eyebrow": "INDIA'S 1ST GEN Z FRAGRANCE HOUSE",
+        "line_1": "Carry",
+        "line_2": "scent.",
+        "line_3": "Everyday.",
+        "btn_label": "Shop Pack 01 · ₹499",
+        "subtext": "Take Me Out is a 5g solid perfume stick in a flip-top box. Flip it open, pull it out, go."
+      }
+    },
+    "mood-accordion": {
+      "type": "mood-accordion",
+      "blocks": {
+        "panel1": {
+          "type": "panel",
+          "settings": {
+            "title": "Office",
+            "scent_name": "Ocean Rush",
+            "scent_notes": "Aqua Notes · Jasmine · Patchouli",
+            "mood_key": "ocean"
+          }
+        },
+        "panel2": {
+          "type": "panel",
+          "settings": {
+            "title": "Date",
+            "scent_name": "Vanilla Bean",
+            "scent_notes": "Vanilla · Amber · Warm Spice",
+            "mood_key": "vanilla"
+          }
+        },
+        "panel3": {
+          "type": "panel",
+          "settings": {
+            "title": "Night",
+            "scent_name": "Oud Affair",
+            "scent_notes": "Agarwood · Oud · Vanilla",
+            "mood_key": "oud"
+          }
+        },
+        "panel4": {
+          "type": "panel",
+          "settings": {
+            "title": "Party",
+            "scent_name": "Nutty Pistachio",
+            "scent_notes": "Pistachio · Almond · Woody",
+            "mood_key": "pistachio"
+          }
+        }
+      },
+      "block_order": [
+        "panel1",
+        "panel2",
+        "panel3",
+        "panel4"
+      ],
+      "settings": {
+        "eyebrow": "PICK YOUR MOMENT",
+        "title": "What's the mood?"
+      }
+    },
+    "product-grid": {
+      "type": "product-grid",
+      "blocks": {
+        "scent1": { "type": "scent", "settings": { "scent_id": "ocean", "mood_tag": "OFFICE", "tone": "#61D6C4", "ink": "#0A0A0A" } },
+        "scent2": { "type": "scent", "settings": { "scent_id": "pistachio", "mood_tag": "PARTY", "tone": "#85AF67", "ink": "#0A0A0A" } },
+        "scent3": { "type": "scent", "settings": { "scent_id": "vanilla", "mood_tag": "DATE", "tone": "#E9C7AC", "ink": "#0A0A0A" } },
+        "scent4": { "type": "scent", "settings": { "scent_id": "oud", "mood_tag": "NIGHT", "tone": "#533C2C", "ink": "#FFFFFF" } }
+      },
+      "block_order": ["scent1", "scent2", "scent3", "scent4"],
+      "settings": {
+        "title_left": "Flip it",
+        "title_accent": "open.",
+        "description": "Take Me Out, Pack 01. Four fragrances. Pick any two for ₹499.",
+        "shuffle_label": "Surprise me",
+        "pack_price_display": "₹499"
+      }
+    },
+    "ritual": {
+      "type": "ritual",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "step_number": "STEP 01",
+            "title": "Flip it open."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "step_number": "STEP 02",
+            "title": "Pull it out."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "step_number": "STEP 03",
+            "title": "Go."
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3"
+      ],
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "manifesto",
+      "settings": {
+        "text": "CH24 is not a perfume brand. It is India's first Gen Z fragrance house. Built in India. Built for now. Your scent is daily, not occasional. It fits in a pocket, not on a shelf."
+      }
+    },
+    "details": {
+      "type": "details",
+      "blocks": {
+        "detail1": {
+          "type": "detail",
+          "settings": {
+            "title": "ALCOHOL FREE",
+            "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M12 3v18M5 12h14\"/><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>"
+          }
+        },
+        "detail2": {
+          "type": "detail",
+          "settings": {
+            "title": "5 G · POCKET SIZE",
+            "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><rect x=\"8\" y=\"3\" width=\"8\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8\"/></svg>"
+          }
+        },
+        "detail3": {
+          "type": "detail",
+          "settings": {
+            "title": "UNISEX",
+            "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M5 21c1.5-4 4-6 7-6s5.5 2 7 6\"/></svg>"
+          }
+        },
+        "detail4": {
+          "type": "detail",
+          "settings": {
+            "title": "LONG LASTING",
+            "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 3\"/></svg>"
+          }
+        }
+      },
+      "block_order": [
+        "detail1",
+        "detail2",
+        "detail3",
+        "detail4"
+      ],
+      "settings": {}
+    },
+    "reels": {
+      "type": "reels",
+      "settings": {
+        "title": "Your scent. Your story.",
+        "subtitle": "tag us. we repost the good ones."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "mood-accordion",
+    "product-grid",
+    "ritual",
+    "manifesto",
+    "details",
+    "reels"
+  ]
+}

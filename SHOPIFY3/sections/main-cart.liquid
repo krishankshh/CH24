@@ -1,0 +1,21 @@
+{% comment %}
+  There is deliberately no bag page in this theme — only the side cart
+  drawer (snippets/cart-drawer.liquid). Anything that lands here (a typed
+  /cart URL, an old bookmark, a no-JS fallback) gets bounced straight back
+  to the homepage with the drawer opened automatically, showing the same
+  real cart contents.
+{% endcomment %}
+<script>
+  sessionStorage.setItem('ch24_open_cart', '1');
+  window.location.replace('{{ routes.root_url }}');
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="0;url={{ routes.root_url }}">
+</noscript>
+
+{% schema %}
+{
+  "name": "Main Cart Page",
+  "settings": []
+}
+{% endschema %}

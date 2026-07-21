@@ -1,0 +1,65 @@
+/* ---------- cart drawer (Shopify only — static site has no real cart) ----------
+   Deliberately its own file, not appended to theme.css: theme.css is synced
+   wholesale from the static site's style.css on every shared-CSS fix, and a
+   plain file copy destroys anything appended here that isn't in the static
+   source. Keeping this Shopify-only feature in its own file means that sync
+   can never silently wipe it out again. */
+
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 100;
+  width: min(420px, 92vw); background: var(--black); color: var(--white);
+  display: flex; flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  transform: translateX(100%); transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+.cart-drawer.is-open { transform: translateX(0); }
+.cart-drawer__backdrop {
+  position: fixed; inset: 0; z-index: 99; background: rgba(0, 0, 0, 0.55);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.cart-drawer__backdrop.is-open { opacity: 1; pointer-events: auto; }
+.cart-drawer__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem var(--gutter); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cart-drawer__title { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; }
+.cart-drawer__close {
+  background: transparent; border: none; color: var(--white); font-size: 1.6rem;
+  line-height: 1; cursor: pointer; padding: 0.2rem 0.5rem;
+}
+.cart-drawer__close:hover { color: var(--orange); }
+.cart-drawer__body { flex: 1 1 auto; overflow-y: auto; padding: 1.4rem var(--gutter); }
+.cart-drawer__empty { color: rgba(255, 255, 255, 0.7); }
+.cart-drawer__items { list-style: none; display: grid; gap: 1.2rem; }
+.cart-drawer__item { display: grid; grid-template-columns: 80px 1fr auto; gap: 1rem; align-items: start; }
+.cart-drawer__item img { border-radius: 8px; object-fit: cover; width: 80px; height: 80px; }
+.cart-drawer__item-info { display: grid; gap: 0.3rem; }
+.cart-drawer__item-title { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; }
+.cart-drawer__item-variant { font-size: 0.78rem; color: rgba(255, 255, 255, 0.6); }
+.cart-drawer__item-qty {
+  display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 0.2rem 0.7rem; width: fit-content;
+}
+.cart-drawer__item-qty button {
+  background: transparent; border: none; color: var(--white); cursor: pointer;
+  font-size: 1rem; line-height: 1; padding: 0.2rem;
+}
+.cart-drawer__item-qty button:hover { color: var(--orange); }
+.cart-drawer__item-price { font-family: var(--font-display); font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cart-drawer__item-remove {
+  grid-column: 3; background: transparent; border: none; color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem; line-height: 1; cursor: pointer; justify-self: end;
+}
+.cart-drawer__item-remove:hover { color: var(--orange); }
+.cart-drawer__foot { padding: 1.4rem var(--gutter) 1.8rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.cart-drawer__subtotal {
+  display: flex; justify-content: space-between; font-family: var(--font-display); font-weight: 800;
+  font-size: 1.05rem; margin-bottom: 1rem; font-variant-numeric: tabular-nums;
+}
+.cart-drawer__checkout { display: block; text-align: center; width: 100%; }
+.cart-drawer__checkout[aria-disabled="true"] { opacity: 0.35; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-drawer { transition: none; }
+  .cart-drawer__backdrop { transition: none; }
+}

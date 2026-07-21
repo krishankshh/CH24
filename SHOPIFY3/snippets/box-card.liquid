@@ -1,0 +1,86 @@
+{% comment %}
+  Renders a product card for the technical sleeve grid showcase.
+  Accepts:
+  - product: {Object} Shopify Product object
+  - mood_tag: {String} Mood flag (optional)
+  - tone: {String} Color code (optional)
+  - ink: {String} Ink color code (optional)
+  - scent_id: {String} Explicit pair-picker key (optional).
+{% endcomment %}
+
+{%- assign product_id = product.handle | replace: 'take-me-out-', '' -%}
+{%- assign current_tone = tone | default: '#61D6C4' -%}
+{%- assign current_ink = ink | default: '#0A0A0A' -%}
+{%- assign current_mood = mood_tag | default: 'Scent' -%}
+
+{%- if tone == blank -%}
+  {%- case product_id -%}
+    {%- when 'ocean' or 'ocean-rush' -%}
+      {%- assign product_id = 'ocean' -%}
+      {%- assign current_tone = '#61D6C4' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'OFFICE' -%}
+    {%- when 'pistachio' or 'nutty-pistachio' -%}
+      {%- assign product_id = 'pistachio' -%}
+      {%- assign current_tone = '#85AF67' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'PARTY' -%}
+    {%- when 'vanilla' or 'vanilla-bean' -%}
+      {%- assign product_id = 'vanilla' -%}
+      {%- assign current_tone = '#E9C7AC' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'DATE' -%}
+    {%- when 'oud' or 'oud-affair' -%}
+      {%- assign product_id = 'oud' -%}
+      {%- assign current_tone = '#533C2C' -%}{%- assign current_ink = '#FFFFFF' -%}{%- assign current_mood = 'NIGHT' -%}
+  {%- endcase -%}
+{%- endif -%}
+
+{%- if scent_id != blank -%}
+  {%- assign product_id = scent_id -%}
+{%- endif -%}
+
+{%- assign default_specs = 'AQUA NOTES · JASMINE · PATCHOULI' -%}
+{%- case product_id -%}
+  {%- when 'pistachio' -%}
+    {%- assign default_specs = 'PISTACHIO · ALMOND · WOODY' -%}
+  {%- when 'vanilla' -%}
+    {%- assign default_specs = 'VANILLA · AMBER · WARM SPICE' -%}
+  {%- when 'oud' -%}
+    {%- assign default_specs = 'AGARWOOD · OUD · VANILLA' -%}
+{%- endcase -%}
+
+<div class="sleeve-card" data-scent="{{ product_id }}" data-id="{{ product_id }}" style="--scent: {{ current_tone }}; border-color: rgba(23, 20, 16, 0.15)">
+  <a class="sleeve-card__link" href="{{ product.url }}" tabindex="0" style="border-bottom-color: rgba(23, 20, 16, 0.15)">
+    <div class="sleeve-card__inner">
+      <div class="sleeve-card__tray">
+        {%- if product.featured_image != blank -%}
+          <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="400" height="500">
+        {%- else -%}
+          {%- assign fallback_img = 'product-ocean-rush.jpg' -%}
+          {%- case product_id -%}
+            {%- when 'pistachio' -%}
+              {%- assign fallback_img = 'product-nutty-pistachio.jpg' -%}
+            {%- when 'vanilla' -%}
+              {%- assign fallback_img = 'product-vanilla-bean.jpg' -%}
+            {%- when 'oud' -%}
+              {%- assign fallback_img = 'product-oud-affair.jpg' -%}
+          {%- endcase -%}
+          <img src="{{ fallback_img | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1000" height="1250">
+        {%- endif -%}
+      </div>
+      <div class="sleeve-card__cover" style="--scent: {{ current_tone }}">
+        <span class="sleeve-card__flag">{{ current_mood | upcase }}</span>
+        <p class="sleeve-card__scent-title">{{ product.title | upcase }}</p>
+        <p class="sleeve-card__brand">CH24</p>
+      </div>
+    </div>
+  </a>
+  <div class="sleeve-card__info" style="color: var(--cream-ink)">
+    <h3 class="sleeve-card__name">{{ product.title }}</h3>
+    <p class="spec-line">
+      {%- if product.metafields.custom.specifications != blank -%}
+        {{ product.metafields.custom.specifications | upcase }}
+      {%- else -%}
+        {{ default_specs }}
+      {%- endif -%}
+    </p>
+    <div class="sleeve-card__actions">
+      <button class="sleeve-card__pick" type="button" style="border-color: rgba(23, 20, 16, 0.2); color: var(--cream-ink)">Add to pair</button>
+    </div>
+  </div>
+</div>

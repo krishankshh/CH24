@@ -1,0 +1,48 @@
+<div class="nav-container">
+  <header class="nav">
+    <a class="nav__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
+      {%- if section.settings.logo_white != blank -%}
+        <img src="{{ section.settings.logo_white | image_url: width: 160 }}" alt="{{ shop.name }}" width="{{ section.settings.logo_width }}" height="auto">
+      {%- else -%}
+        <img src="{{ 'logo-white.png' | asset_url }}" alt="{{ shop.name }}" width="{{ section.settings.logo_width }}" height="auto">
+      {%- endif -%}
+    </a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a class="nav__cart" href="{{ routes.cart_url }}" data-cart-toggle>Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "Header Navigation",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_white",
+      "label": "White Brand Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Custom Width",
+      "default": 80
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu list",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

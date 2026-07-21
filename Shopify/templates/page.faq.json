@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-faq",
+      "blocks": {
+        "faq1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is a solid perfume?",
+            "answer": "A wax-based fragrance you swipe on instead of spray. Take Me Out is a 5g solid perfume stick: alcohol free, skin-nourishing, and small enough to live in your pocket."
+          }
+        },
+        "faq2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I apply it?",
+            "answer": "Flip the box open, pull the stick out, swipe it on pulse points: wrists, neck, behind the ears. Reapply whenever you want. No spray, no cloud, no asking the room's permission."
+          }
+        },
+        "faq3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it unisex?",
+            "answer": "Yes. Every CH24 product is designed for everyone. It is built into the foundation of the brand, not a per-product choice."
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3"
+      ],
+      "settings": {
+        "title": "Questions, answered."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,154 @@
+<section class="hero-v3" data-hero>
+  <div class="hero-v3__text">
+    <div class="hero-v3__headline-wrap">
+      <p class="eyebrow hero-v3__eyebrow">{{ section.settings.eyebrow | upcase }}</p>
+      <h1 class="hero-v3__headline">{{ section.settings.line_1 }}<br><span>{{ section.settings.line_2 }}</span><br>{{ section.settings.line_3 }}</h1>
+      {%- if section.settings.subtext != blank -%}
+        <p class="hero-v3__desc">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+      <div class="hero-v3__cta-row">
+        {%- if section.settings.btn_label != blank -%}
+          <a class="btn btn--orange" href="{{ section.settings.btn_url | default: '#shop' }}">{{ section.settings.btn_label }}</a>
+        {%- endif -%}
+        <a class="btn btn--ghost" href="{{ section.settings.secondary_btn_url | default: '#story' }}">{{ section.settings.secondary_btn_label | default: 'Learn more' }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-v3__media">
+    {%- if section.settings.video_url != blank -%}
+      <video poster="{{ section.settings.image | image_url: width: 1440 }}" autoplay muted loop playsinline aria-hidden="true">
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 1440 }}" alt="{{ section.settings.image.alt | escape }}" loading="eager" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+    {%- else -%}
+      <img src="{{ 'hero-lineup.jpg' | asset_url }}" alt="CH24 Solid Scent Lineup" loading="eager" width="1440" height="800">
+    {%- endif -%}
+  </div>
+  <div class="hero-v3__sidebar">
+    {%- if section.settings.chip_text != blank -%}
+      <a class="hero-v3__chip" href="{{ section.settings.chip_url | default: '#shop' }}">
+        <span class="hero-v3__chip-dot" aria-hidden="true"></span>
+        {{ section.settings.chip_text }}
+      </a>
+    {%- endif -%}
+    <div class="hero-v3__specs">
+      <div class="hero-v3__spec-item">
+        <p class="spec-line">PRICE</p>
+        <p class="hero-v3__spec-val">{{ section.settings.spec_price | default: '₹499 FOR TWO' }}</p>
+      </div>
+      <div class="hero-v3__spec-item">
+        <p class="spec-line">FORMAT</p>
+        <p class="hero-v3__spec-val">{{ section.settings.spec_format | default: '5G SOLID STICK' }}</p>
+      </div>
+      <div class="hero-v3__spec-item">
+        <p class="spec-line">FORMULA</p>
+        <p class="hero-v3__spec-val">{{ section.settings.spec_formula | default: 'ALCOHOL FREE' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Showcase",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Hero MP4 Video URL (e.g. from Shopify Files)"
+    },
+    {
+      "type": "text",
+      "id": "chip_text",
+      "label": "Hero Slogan Chip Label",
+      "default": "4 scents. Pick 2 for ₹499."
+    },
+    {
+      "type": "url",
+      "id": "chip_url",
+      "label": "Chip Link Action"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "INDIA'S 1ST GEN Z FRAGRANCE HOUSE"
+    },
+    {
+      "type": "text",
+      "id": "line_1",
+      "label": "Headline Line 1",
+      "default": "Carry"
+    },
+    {
+      "type": "text",
+      "id": "line_2",
+      "label": "Headline Line 2",
+      "default": "scent."
+    },
+    {
+      "type": "text",
+      "id": "line_3",
+      "label": "Headline Line 3",
+      "default": "Everyday."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Primary Button Label",
+      "default": "Shop Pack 01 · ₹499"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_label",
+      "label": "Secondary Button Label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_url",
+      "label": "Secondary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Sub description Text",
+      "default": "Take Me Out is a 5g solid perfume stick in a packaging sleeve. Slide open, pull it out, go."
+    },
+    {
+      "type": "text",
+      "id": "spec_price",
+      "label": "Spec Price",
+      "default": "₹499 FOR TWO"
+    },
+    {
+      "type": "text",
+      "id": "spec_format",
+      "label": "Spec Format",
+      "default": "5G SOLID STICK"
+    },
+    {
+      "type": "text",
+      "id": "spec_formula",
+      "label": "Spec Formula",
+      "default": "ALCOHOL FREE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Hero Showcase"
+    }
+  ]
+}
+{% endschema %}

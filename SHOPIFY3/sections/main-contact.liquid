@@ -1,0 +1,115 @@
+<header class="page-hero" style="border-bottom:var(--grid-border-light)">
+  <p class="eyebrow page-hero__eyebrow">CONTACT</p>
+  <h1 class="title-large page-hero__title" style="color:var(--cream-ink)">{{ section.settings.title }}</h1>
+  <p class="page-hero__sub">{{ section.settings.description }}</p>
+</header>
+
+<div class="contact-grid" style="color:var(--cream-ink); border-bottom:var(--grid-border-light)">
+  <div class="contact-form-panel">
+    <form data-contact-form>
+      <h2 class="title-medium" style="color:var(--cream-ink); margin-bottom:1.5rem; font-size:1.5rem">{{ section.settings.form_title }}</h2>
+      <div class="contact-field">
+        <label for="cname">Name</label>
+        <input id="cname" name="name" type="text" required style="border-color:rgba(23, 20, 16, 0.25); color:var(--cream-ink)">
+      </div>
+      <div class="contact-field">
+        <label for="cmsg">Message</label>
+        <textarea id="cmsg" name="message" rows="5" required style="border-color:rgba(23, 20, 16, 0.25); color:var(--cream-ink)"></textarea>
+      </div>
+      <button class="btn btn--orange" type="submit">{{ section.settings.form_btn_label }}</button>
+    </form>
+  </div>
+
+  <div class="contact-info-panel">
+    <div class="info-card" style="border-color:rgba(23, 20, 16, 0.15)">
+      <h2>{{ section.settings.wa_card_title }}</h2>
+      <p style="margin-bottom:1rem">{{ section.settings.wa_card_desc }}</p>
+      <a class="btn btn--orange" data-wa-cta href="#" target="_blank" rel="noopener" style="width:fit-content">{{ section.settings.wa_btn_label }}</a>
+    </div>
+    {%- if section.settings.email_address != blank -%}
+      <div class="info-card" style="border-color:rgba(23, 20, 16, 0.15)">
+        <h2>Email</h2>
+        <p>We read every message. Back to you in 24 hours.</p>
+        <p style="margin-top:0.5rem; font-weight:bold"><a href="mailto:{{ section.settings.email_address }}" style="color:var(--orange)">{{ section.settings.email_address }}</a></p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  const CH24_WA_CONTACT = "{{ settings.whatsapp_number | default: '919196036665' }}";
+
+  document.querySelector("[data-wa-cta]").href =
+    `https://wa.me/${CH24_WA_CONTACT}?text=${encodeURIComponent("hi CH24 —")}`;
+
+  document.querySelector("[data-contact-form]").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const msg = `hi CH24 — I'm ${f.get("name")}. ${f.get("message")}`;
+    window.open(`https://wa.me/${CH24_WA_CONTACT}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Contact Page Layout",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Talk to us."
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Page Subtitle Description",
+      "default": "Order help, scent questions, collabs. We reply as people, not as a ticket queue."
+    },
+    {
+      "type": "header",
+      "content": "WhatsApp Floater Card"
+    },
+    {
+      "type": "text",
+      "id": "wa_card_title",
+      "label": "WhatsApp Card Title",
+      "default": "WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "wa_card_desc",
+      "label": "WhatsApp Card Description",
+      "default": "Fastest way to reach us. Tap, type, done."
+    },
+    {
+      "type": "text",
+      "id": "wa_btn_label",
+      "label": "WhatsApp CTA Button Label",
+      "default": "Message on WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Contact Email Address",
+      "default": "help@ch24.in"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form Title",
+      "default": "Write a message"
+    },
+    {
+      "type": "text",
+      "id": "form_btn_label",
+      "label": "Form Submit Button Label",
+      "default": "Send to WhatsApp"
+    }
+  ]
+}
+{% endschema %}

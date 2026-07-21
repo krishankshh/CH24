@@ -1,0 +1,89 @@
+<article class="page">
+  <header class="page-hero">
+    <p class="page-hero__eyebrow">FAQ</p>
+    <h1 class="page-hero__title">{{ section.settings.title }}</h1>
+  </header>
+
+  {%- for block in section.blocks -%}
+    <details class="faq-item" {{ block.shopify_attributes }}>
+      <summary>{{ block.settings.question }}</summary>
+      <div class="faq-body">
+        <p>{{ block.settings.answer }}</p>
+      </div>
+    </details>
+  {%- endfor -%}
+</article>
+
+<script>
+  document.documentElement.classList.add("js");
+  const hoverable = window.matchMedia("(hover: hover)").matches;
+  document.querySelectorAll(".faq-item").forEach(d => {
+    d.open = true;
+    const summary = d.querySelector("summary");
+    if (summary) {
+      summary.setAttribute("role", "button");
+      summary.setAttribute("aria-expanded", "false");
+    }
+
+    const setOpen = (open) => {
+      d.classList.toggle("is-open", open);
+      if (summary) {
+        summary.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+    };
+
+    if (hoverable) {
+      d.addEventListener("mouseenter", () => setOpen(true));
+      d.addEventListener("mouseleave", () => setOpen(false));
+    }
+
+    if (summary) {
+      summary.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = d.classList.contains("is-open");
+        setOpen(!isOpen);
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Accordion Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Questions, answered."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question Text",
+          "default": "What is a solid perfume?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer Text",
+          "default": "A wax-based fragrance you swipe on instead of spray. Take Me Out is a 5g solid perfume stick: alcohol free, skin-nourishing, and small enough to live in your pocket."
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "faq_item", "settings": { "question": "What is a solid perfume?", "answer": "A wax-based fragrance you swipe on instead of spray. Take Me Out is a 5g solid perfume stick: alcohol free, skin-nourishing, and small enough to live in your pocket." } },
+      { "type": "faq_item", "settings": { "question": "How do I apply it?", "answer": "Flip the box open, pull the stick out, swipe it on pulse points: wrists, neck, behind the ears. Reapply whenever you want. No spray, no cloud, no asking the room's permission." } },
+      { "type": "faq_item", "settings": { "question": "Is it unisex?", "answer": "Yes. Every CH24 product is designed for everyone. It is built into the foundation of the brand, not a per-product choice." } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+<div class="ticker" aria-hidden="true" style="background: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+  <div class="ticker__track" style="animation-duration: {{ section.settings.speed }}s;">
+    {%- for block in section.blocks -%}
+      <span>{{ block.settings.text }}</span><span>·</span>
+    {%- endfor -%}
+    {%- for block in section.blocks -%}
+      <span>{{ block.settings.text }}</span><span>·</span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ticker Ticker",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#E96213"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "s",
+      "label": "Scroll Animation Duration",
+      "default": 22
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Ticker Slogan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Slogan Text",
+          "default": "scent is identity. not occasion."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ticker Ticker",
+      "blocks": [
+        { "type": "text_block", "settings": { "text": "scent is identity. not occasion." } },
+        { "type": "text_block", "settings": { "text": "₹499 for a pack of two" } },
+        { "type": "text_block", "settings": { "text": "alcohol free. unisex." } },
+        { "type": "text_block", "settings": { "text": "carry it. every day." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

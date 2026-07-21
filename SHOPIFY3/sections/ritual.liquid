@@ -1,0 +1,68 @@
+<section class="format" id="format">
+  <div class="format__pin">
+    <div class="format__track">
+      {%- for block in section.blocks -%}
+        <article class="panel" {{ block.shopify_attributes }}>
+          <p class="panel__step">{{ block.settings.step_number }}</p>
+          <h3 class="panel__title">{{ block.settings.title }}</h3>
+          <div class="panel__media">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}">
+            {%- else -%}
+              {%- assign fallback_img = 'ritual-flip-open.jpg' -%}
+              {%- case block.settings.step_number -%}
+                {%- when 'STEP 02' -%}
+                  {%- assign fallback_img = 'ritual-pull-out.jpg' -%}
+                {%- when 'STEP 03' -%}
+                  {%- assign fallback_img = 'ritual-go.jpg' -%}
+              {%- endcase -%}
+              <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="600" height="600">
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Horizontal Scent Ritual",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Ritual Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "default": "STEP 01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Flip it open."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Illustration Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal Scent Ritual",
+      "blocks": [
+        { "type": "step", "settings": { "step_number": "STEP 01", "title": "Flip it open." } },
+        { "type": "step", "settings": { "step_number": "STEP 02", "title": "Pull it out." } },
+        { "type": "step", "settings": { "step_number": "STEP 03", "title": "Go." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

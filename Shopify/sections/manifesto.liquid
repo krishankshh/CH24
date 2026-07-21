@@ -1,0 +1,24 @@
+<div class="manifesto-wrap">
+  <section class="manifesto" id="story">
+    <p class="manifesto__text" data-words>{{ section.settings.text }}</p>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Manifesto",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Manifesto Text",
+      "default": "CH24 is not a perfume brand. It is India's first Gen Z fragrance house. Built in India. Built for now. Your scent is daily, not occasional. It fits in a pocket, not on a shelf."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Manifesto"
+    }
+  ]
+}
+{% endschema %}

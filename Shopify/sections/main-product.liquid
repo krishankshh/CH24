@@ -1,0 +1,351 @@
+{%- liquid
+  assign product_id = product.handle | replace: 'take-me-out-', ''
+  assign current_tone = '#61D6C4'
+  assign tone_name = 'Scent'
+  assign notes = product.description
+  assign perfect_for = 'Daily Carry'
+
+  # Prefer the merchant-configured cross-sell block's scent_id over guessing
+  # from the handle — matches box-card.liquid's same fix, since a real
+  # product's handle isn't guaranteed to contain the scent name.
+  for block in section.blocks
+    if block.settings.product.handle == product.handle
+      assign product_id = block.settings.scent_id
+      assign current_tone = block.settings.tone
+    endif
+  endfor
+
+  case product_id
+    when 'ocean' or 'ocean-rush'
+      assign product_id = 'ocean'
+      assign current_tone = '#61D6C4'
+      assign tone_name = 'Aqua Notes'
+      assign notes = 'Aqua Notes · Jasmine · Patchouli'
+      assign perfect_for = 'Office · Day · Gym'
+    when 'pistachio' or 'nutty-pistachio'
+      assign product_id = 'pistachio'
+      assign current_tone = '#85AF67'
+      assign tone_name = 'Pistachio'
+      assign notes = 'Pistachio · Almond · Woody'
+      assign perfect_for = 'Day Out · Party · Movie'
+    when 'vanilla' or 'vanilla-bean'
+      assign product_id = 'vanilla'
+      assign current_tone = '#E9C7AC'
+      assign tone_name = 'Vanilla'
+      assign notes = 'Vanilla · Amber · Warm Spice'
+      assign perfect_for = 'Date · Coffee · Evening'
+    when 'oud' or 'oud-affair'
+      assign product_id = 'oud'
+      assign current_tone = '#533C2C'
+      assign tone_name = 'Oud'
+      assign notes = 'Agarwood · Oud · Vanilla'
+      assign perfect_for = 'Night · Evening · Wedding'
+  endcase
+-%}
+
+<div class="page page--wide">
+<div class="pd2__story">
+  <div class="pd2__visual">
+    {%- if section.settings.image_box != blank -%}
+      <img class="pd2__stage-img is-active" data-stage-img="1" src="{{ section.settings.image_box | image_url: width: 800 }}" alt="{{ product.title | escape }} box closed" width="{{ section.settings.image_box.width }}" height="{{ section.settings.image_box.height }}">
+    {%- else -%}
+      <img class="pd2__stage-img is-active" data-stage-img="1" src="{{ 'box-front.jpg' | asset_url }}" alt="{{ product.title | escape }} box closed" width="800" height="800">
+    {%- endif -%}
+
+    {%- if section.settings.image_flip != blank -%}
+      <img class="pd2__stage-img" data-stage-img="2" src="{{ section.settings.image_flip | image_url: width: 800 }}" alt="{{ product.title | escape }} box open" width="{{ section.settings.image_flip.width }}" height="{{ section.settings.image_flip.height }}">
+    {%- else -%}
+      <img class="pd2__stage-img" data-stage-img="2" src="{{ 'ritual-flip-open.jpg' | asset_url }}" alt="{{ product.title | escape }} box open" width="800" height="800">
+    {%- endif -%}
+
+    {%- comment -%}
+      Stages from here on are driven by however many real photos this
+      product actually has (product.images) — not a fixed count. One
+      product with 5 photos gets 5 scroll stages; one with a single photo
+      gets one. Falls back to a single scent-tinted stock photo only if the
+      merchant hasn't uploaded any real photos yet.
+    {%- endcomment -%}
+    {%- assign gallery_images = product.images -%}
+    {%- assign gallery_count = gallery_images.size -%}
+    {%- if gallery_count > 0 -%}
+      {%- for image in gallery_images -%}
+        {%- assign stage_n = forloop.index | plus: 2 -%}
+        <img class="pd2__stage-img" data-stage-img="{{ stage_n }}" src="{{ image | image_url: width: 800 }}" alt="{{ product.title | escape }}" width="{{ image.width }}" height="{{ image.height }}">
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign fallback_img = 'product-ocean-rush.jpg' -%}
+      {%- case product_id -%}
+        {%- when 'pistachio' -%}
+          {%- assign fallback_img = 'product-nutty-pistachio.jpg' -%}
+        {%- when 'vanilla' -%}
+          {%- assign fallback_img = 'product-vanilla-bean.jpg' -%}
+        {%- when 'oud' -%}
+          {%- assign fallback_img = 'product-oud-affair.jpg' -%}
+      {%- endcase -%}
+      <img class="pd2__stage-img" data-stage-img="3" src="{{ fallback_img | asset_url }}" alt="{{ product.title | escape }} stick" width="1000" height="1250">
+    {%- endif -%}
+  </div>
+
+  <div class="pd2__stages">
+    <div class="pd2__stage" data-stage-trigger="1">
+      <p class="pd2__stage-k">01 · THE BOX</p>
+      <h1 class="pd2__stage-title">{{ section.settings.stage_1_title }}</h1>
+      <p class="pd2__stage-text">{{ section.settings.stage_1_text }}</p>
+    </div>
+    <div class="pd2__stage" data-stage-trigger="2">
+      <p class="pd2__stage-k">02 · THE FLIP</p>
+      <h1 class="pd2__stage-title">{{ section.settings.stage_2_title }}</h1>
+      <p class="pd2__stage-text">{{ section.settings.stage_2_text }}</p>
+    </div>
+
+    {%- comment -%}
+      Intentionally NOT product.price for the pack price: that's this single
+      scent's own Shopify price, not the pack price. The pack price is two
+      scents checked out together, so it's a merchant-editable display
+      setting — keep each scent's real Shopify price at half the pack price
+      (e.g. ₹249.50) so the real Shopify cart total still comes out correct.
+    {%- endcomment -%}
+    {%- if gallery_count > 1 -%}
+      {%- for image in gallery_images -%}
+        {%- assign stage_n = forloop.index | plus: 2 -%}
+        <div class="pd2__stage" data-stage-trigger="{{ stage_n }}">
+          {%- if forloop.first -%}
+            <span class="pd2__tone" data-pd2-tone style="border-color: {{ current_tone }};">LABEL · {{ tone_name | upcase }}</span>
+            <h1 class="pd2__stage-title" data-pd2-name>{{ product.title }}</h1>
+            {%- if notes != blank -%}<p class="pd2__stage-text" data-pd2-notes>Notes: {{ notes }}</p>{%- endif -%}
+          {%- elsif forloop.last -%}
+            <p class="pd2__stage-k">{{ stage_n }} · READY</p>
+            <h1 class="pd2__stage-title">{{ section.settings.stage_4_title }}</h1>
+            {%- if product.description != blank and product.description != notes -%}
+              <div class="pd2__desc">{{ product.description }}</div>
+            {%- endif -%}
+            <p class="pd2__desc" data-pd2-perfect>Perfect for: {{ perfect_for }}</p>
+            <p class="pd2__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+            <p class="pd2__price">{{ section.settings.pack_price_display }}</p>
+            <p class="pd2__price-note">{{ section.settings.price_note }}</p>
+            <div class="pd2__actions">
+              <button class="btn btn--orange" type="button" data-pd2-add data-id="{{ product_id }}">Add to cart</button>
+              <a class="btn btn--ghost" href="#complete">Add another ↓</a>
+            </div>
+          {%- else -%}
+            <p class="pd2__stage-k">{{ stage_n }} · A CLOSER LOOK</p>
+            <h1 class="pd2__stage-title">Every angle.</h1>
+            <p class="pd2__stage-text">Before you carry it, this is exactly what's in the box.</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="pd2__stage" data-stage-trigger="3">
+        <span class="pd2__tone" data-pd2-tone style="border-color: {{ current_tone }};">LABEL · {{ tone_name | upcase }}</span>
+        <h1 class="pd2__stage-title" data-pd2-name>{{ product.title }}</h1>
+        {%- if notes != blank -%}<p class="pd2__stage-text" data-pd2-notes>Notes: {{ notes }}</p>{%- endif -%}
+        {%- if product.description != blank and product.description != notes -%}
+          <div class="pd2__desc">{{ product.description }}</div>
+        {%- endif -%}
+        <p class="pd2__desc" data-pd2-perfect>Perfect for: {{ perfect_for }}</p>
+        <p class="pd2__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+        <p class="pd2__price">{{ section.settings.pack_price_display }}</p>
+        <p class="pd2__price-note">{{ section.settings.price_note }}</p>
+        <div class="pd2__actions">
+          <button class="btn btn--orange" type="button" data-pd2-add data-id="{{ product_id }}">Add to cart</button>
+          <a class="btn btn--ghost" href="#complete">Add another ↓</a>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<section class="pd2__complete" id="complete">
+  <h2 class="pd2__complete-title">{{ section.settings.complete_title }}</h2>
+  <p class="pd2__complete-sub">{{ section.settings.complete_subtitle }}</p>
+  
+  <div class="box-grid" data-pd2-others>
+    {%- for block in section.blocks -%}
+      {%- if block.settings.product != blank and block.settings.product.handle != product.handle -%}
+        {% render 'box-card', product: block.settings.product, tone: block.settings.tone, ink: block.settings.ink, mood_tag: block.settings.mood_tag, scent_id: block.settings.scent_id %}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+</div>
+
+<script>
+  window.CH24_SHOPIFY_VARIANTS = window.CH24_SHOPIFY_VARIANTS || {};
+  window.CH24_SHOPIFY_TITLES = window.CH24_SHOPIFY_TITLES || {};
+  {%- for block in section.blocks -%}
+    {%- if block.settings.product != blank -%}
+      {%- if block.settings.product.first_available_variant != blank -%}
+        window.CH24_SHOPIFY_VARIANTS["{{ block.settings.scent_id }}"] = "{{ block.settings.product.first_available_variant.id }}";
+      {%- endif -%}
+      window.CH24_SHOPIFY_TITLES["{{ block.settings.scent_id }}"] = {{ block.settings.product.title | json }};
+    {%- endif -%}
+  {%- endfor -%}
+
+  document.addEventListener("DOMContentLoaded", () => {
+    /* site.js and the GSAP/ScrollTrigger CDN tags are all `defer`, so they
+       only finish executing right before DOMContentLoaded fires — this
+       whole block has to wait for that same moment, not run inline. */
+
+    /* stage-4 "Add to cart" CTA: real add, same as every other box's pick
+       button (window.CH24_addToCart, exposed by site.js's cart drawer) —
+       no cap, adds one more each click, quantity managed in the drawer. */
+    const addBtn = document.querySelector("[data-pd2-add]");
+    if (addBtn) {
+      addBtn.addEventListener("click", () => {
+        window.CH24_addToCart && window.CH24_addToCart(addBtn.dataset.id);
+      });
+    }
+
+    /* scroll-driven crossfade through the four unboxing stages — also never
+       ported; the static site had this as a page-specific inline script. */
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      const stageImgs = {};
+      document.querySelectorAll("[data-stage-img]").forEach((img) => { stageImgs[img.dataset.stageImg] = img; });
+      function setActiveStage(n) {
+        Object.entries(stageImgs).forEach(([k, img]) => img.classList.toggle("is-active", k === String(n)));
+      }
+      document.querySelectorAll("[data-stage-trigger]").forEach((stageEl) => {
+        const n = stageEl.dataset.stageTrigger;
+        ScrollTrigger.create({
+          trigger: stageEl,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => setActiveStage(n),
+          onEnterBack: () => setActiveStage(n)
+        });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Detail Layout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Stage Images (Universal)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_box",
+      "label": "Stage 1: Closed Box Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_flip",
+      "label": "Stage 2: Open Box Image"
+    },
+    {
+      "type": "header",
+      "content": "Unboxing Stage Texts"
+    },
+    {
+      "type": "text",
+      "id": "stage_1_title",
+      "label": "Stage 1 Title",
+      "default": "Take Me Out."
+    },
+    {
+      "type": "text",
+      "id": "stage_1_text",
+      "label": "Stage 1 Text",
+      "default": "A cigarette-style flip-top box. Not packaging — the brand's first statement. Every scent in Pack 01 starts exactly here."
+    },
+    {
+      "type": "text",
+      "id": "stage_2_title",
+      "label": "Stage 2 Title",
+      "default": "Flip it open."
+    },
+    {
+      "type": "text",
+      "id": "stage_2_text",
+      "label": "Stage 2 Text",
+      "default": "One motion. People notice before you've applied a single thing — that moment is part of what you're carrying."
+    },
+    {
+      "type": "text",
+      "id": "stage_4_title",
+      "label": "Stage 4 Title",
+      "default": "Cap off. Go."
+    },
+    {
+      "type": "text",
+      "id": "pack_price_display",
+      "label": "Pack Price (shown on page, not pulled from a single product's price)",
+      "default": "₹499",
+      "info": "This is display text only. Set each scent's real Shopify price to half this amount (e.g. ₹249.50) so the real cart total matches at checkout."
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price Details Note",
+      "default": "Pack of two. This scent plus any second one you pick below."
+    },
+    {
+      "type": "header",
+      "content": "Cross-sell Pair Builder"
+    },
+    {
+      "type": "text",
+      "id": "complete_title",
+      "label": "Pair Grid Title",
+      "default": "More to explore."
+    },
+    {
+      "type": "text",
+      "id": "complete_subtitle",
+      "label": "Pair Grid Subtitle",
+      "default": "Add as many scents as you like, all in one bag."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scent",
+      "name": "Scent",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "scent_id",
+          "label": "Scent Key (ocean, pistachio, vanilla, oud)",
+          "info": "Must be unique per block and match the same product's key on the homepage grid and shop page for the pair-picker to work.",
+          "default": "ocean"
+        },
+        {
+          "type": "text",
+          "id": "mood_tag",
+          "label": "Mood Tag (e.g. OFFICE, PARTY, DATE, NIGHT)",
+          "default": "OFFICE"
+        },
+        {
+          "type": "color",
+          "id": "tone",
+          "label": "Swatch / Card Color",
+          "default": "#61D6C4"
+        },
+        {
+          "type": "color",
+          "id": "ink",
+          "label": "Text Color on Card",
+          "default": "#0A0A0A"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "scent", "settings": { "scent_id": "ocean", "mood_tag": "OFFICE", "tone": "#61D6C4", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "pistachio", "mood_tag": "PARTY", "tone": "#85AF67", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "vanilla", "mood_tag": "DATE", "tone": "#E9C7AC", "ink": "#0A0A0A" } },
+      { "type": "scent", "settings": { "scent_id": "oud", "mood_tag": "NIGHT", "tone": "#533C2C", "ink": "#FFFFFF" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,116 @@
+<section class="hero" data-hero>
+  <div class="hero__media" data-hero-media>
+    {%- if section.settings.video_url != blank -%}
+      <video poster="{{ section.settings.image | image_url: width: 1440 }}" autoplay muted loop playsinline aria-hidden="true">
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 1440 }}" alt="{{ section.settings.image.alt | escape }}" loading="eager" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+    {%- else -%}
+      <img src="{{ 'hero-lineup.jpg' | asset_url }}" alt="CH24 Solid Scent Lineup" loading="eager" width="1440" height="800">
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.chip_text != blank -%}
+    <a class="hero__chip" href="{{ section.settings.chip_url | default: '#shop' }}">
+      <span class="hero__chip-dot" aria-hidden="true"></span>
+      {{ section.settings.chip_text }}
+    </a>
+  {%- endif -%}
+
+  <div class="hero__type">
+    <p class="hero__eyebrow anim-eyebrow">{{ section.settings.eyebrow | upcase }}</p>
+    <div class="hero__line hero__line--1">{{ section.settings.line_1 }}</div>
+    <div class="hero__line hero__line--2">{{ section.settings.line_2 }}</div>
+    <div class="hero__line hero__line--3">{{ section.settings.line_3 }}</div>
+  </div>
+
+  <div class="hero__foot">
+    {%- if section.settings.btn_label != blank -%}
+      <a class="btn btn--orange" href="{{ section.settings.btn_url | default: '#shop' }}">{{ section.settings.btn_label }}</a>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="hero__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+  </div>
+
+  <p class="hero__scroll" aria-hidden="true">
+    SCROLL<br>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+  </p>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Showcase",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Hero MP4 Video URL (e.g. from Shopify Files)"
+    },
+    {
+      "type": "text",
+      "id": "chip_text",
+      "label": "Hero Slogan Chip Label",
+      "default": "4 scents. Pick 2 for ₹499."
+    },
+    {
+      "type": "url",
+      "id": "chip_url",
+      "label": "Chip Link Action"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "INDIA'S 1ST GEN Z FRAGRANCE HOUSE"
+    },
+    {
+      "type": "text",
+      "id": "line_1",
+      "label": "Headline Line 1",
+      "default": "Carry"
+    },
+    {
+      "type": "text",
+      "id": "line_2",
+      "label": "Headline Line 2",
+      "default": "scent."
+    },
+    {
+      "type": "text",
+      "id": "line_3",
+      "label": "Headline Line 3",
+      "default": "Everyday."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Shop Pack 01 · ₹499"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL Action"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Sub description Text",
+      "default": "Take Me Out is a 5g solid perfume stick in a flip-top box. Flip it open, pull it out, go."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Hero Showcase"
+    }
+  ]
+}
+{% endschema %}

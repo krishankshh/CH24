@@ -1,0 +1,55 @@
+<section class="shop">
+  <header class="shop__head">
+    <div>
+      <h2 class="shop__title">{{ collection.title }}</h2>
+      {%- if collection.description != blank -%}
+        <p class="shop__sub">{{ collection.description }}</p>
+      {%- endif -%}
+    </div>
+  </header>
+
+  <div class="box-grid">
+    {%- for product in collection.products -%}
+      {% render 'box-card', product: product %}
+    {%- else -%}
+      <p style="color: var(--white); grid-column: 1/-1; text-align: center;">No products found in this collection.</p>
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  /* Same scent-id → variant-id map the product page and homepage grid
+     expose, built here from whatever's actually in this collection so
+     picking a pair on the shop page can check out too — not just the
+     4 hand-picked swatches. */
+  window.CH24_SHOPIFY_VARIANTS = window.CH24_SHOPIFY_VARIANTS || {};
+  window.CH24_SHOPIFY_TITLES = window.CH24_SHOPIFY_TITLES || {};
+  {%- for product in collection.products -%}
+    {%- assign scent_id = product.handle | replace: 'take-me-out-', '' -%}
+    {%- case scent_id -%}
+      {%- when 'ocean' or 'ocean-rush' -%}{%- assign scent_id = 'ocean' -%}
+      {%- when 'pistachio' or 'nutty-pistachio' -%}{%- assign scent_id = 'pistachio' -%}
+      {%- when 'vanilla' or 'vanilla-bean' -%}{%- assign scent_id = 'vanilla' -%}
+      {%- when 'oud' or 'oud-affair' -%}{%- assign scent_id = 'oud' -%}
+    {%- endcase -%}
+    {%- if product.first_available_variant != blank -%}
+      window.CH24_SHOPIFY_VARIANTS["{{ scent_id }}"] = "{{ product.first_available_variant.id }}";
+    {%- endif -%}
+    window.CH24_SHOPIFY_TITLES["{{ scent_id }}"] = {{ product.title | json }};
+  {%- endfor -%}
+</script>
+
+{% schema %}
+{
+  "name": "Main Collection Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pack_price_display",
+      "label": "Pack Price (display text)",
+      "default": "₹499",
+      "info": "Set each scent's real Shopify price to half this amount so the real cart total matches at checkout."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you are looking for does not exist or has been moved."
+    },
+    "search": {
+      "search_placeholder": "Search products...",
+      "submit": "Search"
+    }
+  },
+  "cart": {
+    "title": "Shopping Bag",
+    "empty": "Your bag is currently empty.",
+    "continue_shopping": "Continue shopping",
+    "subtotal": "Subtotal"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-about",
+      "blocks": {
+        "p1": { "type": "paragraph", "settings": { "text": "CH24 was built with one clear intention: to bring a fresh, Gen Z perspective into India's fragrance market. A category dominated by legacy brands, heavy glass bottles, and occasion-only thinking." } },
+        "p2": { "type": "paragraph", "settings": { "text": "We saw a generation that moves differently. They carry less. They want to smell intentional every single day, not just on Friday nights. They want fragrance that fits in a pocket, not on a shelf. A generation no legacy fragrance brand in India was actually speaking to." } },
+        "p3": { "type": "paragraph", "settings": { "text": "So we built CH24. Not a cheaper version of an existing perfume brand. Not a mass-market deo with better packaging. Something completely new: a fragrance house designed from the ground up for the way Gen Z lives, carries, and identifies with scent." } },
+        "h1": { "type": "heading", "settings": { "text": "The format is the message" } },
+        "p4": { "type": "paragraph", "settings": { "text": "We started with Take Me Out: a 5g solid perfume stick in a flip-top box. Alcohol free. Skin-nourishing. Pocket-sized. Priced at ₹499 for a pack of two, because great scent should not require justification." } },
+        "p5": { "type": "paragraph", "settings": { "text": "The box is not packaging. It is the brand's first statement. When you pull it out, people notice before you have applied a single thing. That moment is part of what we sell." } },
+        "h2": { "type": "heading", "settings": { "text": "What we stand for" } },
+        "l1": { "type": "list_item", "settings": { "text": "Scent as identity, not occasion. CH24 is not for special moments. It is for every moment." } },
+        "l2": { "type": "list_item", "settings": { "text": "Accessible without compromise. Real quality at a price that does not require justification." } },
+        "l3": { "type": "list_item", "settings": { "text": "Genderless by architecture. Every CH24 product is designed for everyone, built into the foundation." } },
+        "l4": { "type": "list_item", "settings": { "text": "India-rooted, world-aware. Scent profiles, pricing, and culture grounded here. Ambition and craft standard: global." } },
+        "h3": { "type": "heading", "settings": { "text": "Where it goes" } },
+        "p6": { "type": "paragraph", "settings": { "text": "The stick is just the beginning. CH24 is building toward a complete fragrance house that grows from the pocket into every part of how Gen Z experiences scent. All under one identity. All built the same way: accessible, intentional, and unapologetically for this generation." } },
+        "link1": { "type": "link", "settings": { "text": "Start with Pack 01" } }
+      },
+      "block_order": ["p1", "p2", "p3", "h1", "p4", "p5", "h2", "l1", "l2", "l3", "l4", "h3", "p6", "link1"],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

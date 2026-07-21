@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="section--light">
@@ -36,44 +36,86 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
   </header>
 
   <main class="page page--wide">
-    <div class="pd">
-      <figure class="pd__media">
-        <img data-pd-img src="assets/products/product-ocean-rush.jpg" alt="Take Me Out solid perfume stick">
-      </figure>
-      <div>
-        <span class="badge" data-pd-mood>MOOD</span>
-        <span class="pd__tone" data-pd-tone style="margin-left:0.6rem">LABEL</span>
-        <h1 class="pd__name" data-pd-name>Take Me Out</h1>
-        <p class="pd__desc" data-pd-desc>Notes</p>
-        <p class="pd__perfect-for" data-pd-perfect>Perfect for</p>
-        <p class="pd__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
-        <p class="pd__price">₹499</p>
-        <p class="pd__price-note">Pack of two. This scent plus any second one you pick.</p>
-        <div class="pd__actions">
-          <button class="btn btn--orange" type="button" data-pd-add>Add to pair</button>
-          <a class="btn btn--ghost" href="shop.html">Pick the second</a>
+
+    <!-- scent switcher: swap scent in place, no reload -->
+    <div class="pd2__switcher">
+      <span class="pd2__switcher-label">SWITCH SCENT</span>
+      <button class="pd2__swatch" type="button" data-switch="ocean" style="--tone:#61D6C4" aria-label="Ocean Rush"></button>
+      <button class="pd2__swatch" type="button" data-switch="pistachio" style="--tone:#85AF67" aria-label="Nutty Pistachio"></button>
+      <button class="pd2__swatch" type="button" data-switch="vanilla" style="--tone:#E9C7AC" aria-label="Vanilla Bean"></button>
+      <button class="pd2__swatch" type="button" data-switch="oud" style="--tone:#533C2C" aria-label="Oud Affair"></button>
+    </div>
+
+    <!-- scroll-driven unboxing: sticky photo, four stages scroll past it.
+         Stages 1–2 are universal (every scent ships in the same box).
+         Stages 3–4 turn scent-specific the moment your stick appears —
+         same as a real unboxing, you don't know the color until it's out. -->
+    <div class="pd2__story">
+      <div class="pd2__visual">
+        <img class="pd2__stage-img is-active" data-stage-img="1" src="assets/products/box-front.jpg" alt="Take Me Out, closed">
+        <img class="pd2__stage-img" data-stage-img="2" src="assets/products/ritual-flip-open.jpg" alt="Flip-top box opening">
+        <img class="pd2__stage-img" data-stage-img="3" src="assets/products/product-ocean-rush.jpg" alt="Take Me Out solid perfume stick">
+        <img class="pd2__stage-img" data-stage-img="4" src="assets/products/loose-ocean-rush.jpg" alt="Take Me Out, cap off">
+      </div>
+
+      <div class="pd2__stages">
+        <div class="pd2__stage" data-stage-trigger="1">
+          <p class="pd2__stage-k">01 · THE BOX</p>
+          <h1 class="pd2__stage-title">Take Me Out.</h1>
+          <p class="pd2__stage-text">A cigarette-style flip-top box. Not packaging — the brand's first statement. Every scent in Pack 01 starts exactly here.</p>
+        </div>
+        <div class="pd2__stage" data-stage-trigger="2">
+          <p class="pd2__stage-k">02 · THE FLIP</p>
+          <h1 class="pd2__stage-title">Flip it open.</h1>
+          <p class="pd2__stage-text">One motion. People notice before you've applied a single thing — that moment is part of what you're carrying.</p>
+        </div>
+        <div class="pd2__stage" data-stage-trigger="3">
+          <span class="pd2__tone" data-pd2-tone>LABEL</span>
+          <h1 class="pd2__stage-title" data-pd2-name>Scent</h1>
+          <p class="pd2__stage-text" data-pd2-notes>Notes</p>
+        </div>
+        <div class="pd2__stage" data-stage-trigger="4">
+          <p class="pd2__stage-k">04 · READY</p>
+          <h1 class="pd2__stage-title">Cap off. Go.</h1>
+          <p class="pd2__desc" data-pd2-perfect>Perfect for</p>
+          <p class="pd2__spec">5 GMS · 0.17OZ · ALCOHOL FREE · UNISEX · LONG LASTING</p>
+          <p class="pd2__price">₹499</p>
+          <p class="pd2__price-note">Pack of two. This scent plus any second one you pick below.</p>
+          <div class="pd2__actions">
+            <button class="btn btn--orange" type="button" data-pd2-add>Add to pair</button>
+            <a class="btn btn--ghost" href="#complete">Pick the second ↓</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="pd__related">
-      <h2 class="pd__related-title">The rest of Pack 01</h2>
-      <div class="shop__grid" style="padding:0" data-pd-related></div>
-    </div>
+    <!-- complete the pair, right here — reuses the same flip-box cards
+         and pair state as the rest of the site -->
+    <section class="pd2__complete" id="complete">
+      <h2 class="pd2__complete-title">Complete your pair.</h2>
+      <p class="pd2__complete-sub">Take Me Out is always sold as two. Pick the second right here.</p>
+      <div class="box-grid" data-pd2-others></div>
+
+      <aside class="pairbar" data-pairbar aria-live="polite" aria-atomic="true">
+        <p class="pairbar__label">Your pair <span data-pair-names>: pick two</span></p>
+        <a class="btn btn--orange pairbar__cta" href="checkout.html" data-pair-cta aria-disabled="true">Checkout · ₹499</a>
+      </aside>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__signup">
+        <img class="footer__logo footer__logo--small" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
         <p class="footer__hook">First drops go to the list.</p>
         <form class="footer__form" action="#" method="post">
           <label class="visually-hidden" for="email">Email</label>
           <input id="email" type="email" name="email" placeholder="your email" required>
-          <button class="btn btn--white" type="submit">Join</button>
+          <button class="btn btn--orange" type="submit">Join</button>
         </form>
       </div>
       <nav class="footer__col" aria-label="Shop">
@@ -95,68 +137,120 @@
         <a href="terms.html">Terms &amp; conditions</a>
       </nav>
     </div>
-    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
     <div class="footer__bar">
       <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
       <p>SCENT IS IDENTITY. NOT OCCASION.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="js/site.js"></script>
   <script>
-    /* fill the template from ?p=ocean|pistachio|vanilla|oud */
     (() => {
-      const id = new URLSearchParams(location.search).get("p");
-      const p = CH24_PRODUCTS[id];
-      if (!p) { location.replace("shop.html"); return; }
+      const stageImgs = {
+        1: document.querySelector('[data-stage-img="1"]'),
+        2: document.querySelector('[data-stage-img="2"]'),
+        3: document.querySelector('[data-stage-img="3"]'),
+        4: document.querySelector('[data-stage-img="4"]')
+      };
+      let currentId = new URLSearchParams(location.search).get("p");
+      if (!CH24_PRODUCTS[currentId]) currentId = "ocean";
 
-      document.title = `${p.name} — Take Me Out solid perfume stick | CH24`;
-      document.querySelector("[data-pd-name]").textContent = p.name;
-      document.querySelector("[data-pd-desc]").textContent = `Notes: ${p.notes}`;
-      document.querySelector("[data-pd-perfect]").textContent = `Perfect for: ${p.perfectFor}`;
-      document.querySelector("[data-pd-mood]").textContent = p.mood.toUpperCase();
-      const tone = document.querySelector("[data-pd-tone]");
-      tone.textContent = `LABEL · ${p.toneName.toUpperCase()}`;
-      tone.style.borderColor = p.tone;
-      const img = document.querySelector("[data-pd-img]");
-      img.src = p.img;
-      img.alt = `Take Me Out ${p.name} solid perfume stick`;
+      function renderOthers() {
+        const rail = document.querySelector("[data-pd2-others]");
+        rail.innerHTML = "";
+        Object.keys(CH24_PRODUCTS).filter(k => k !== currentId).forEach(k => {
+          const o = CH24_PRODUCTS[k];
+          const wrap = document.createElement("div");
+          wrap.innerHTML = `
+            <a class="box" href="product.html?p=${k}" data-id="${k}" tabindex="0" style="--tone:${o.tone}; --ink:${o.ink}">
+              <span class="box__flag">${o.mood.toUpperCase()}</span>
+              <div class="box__inner">
+                <div class="box__interior"><img src="${o.img}" alt="${o.name} solid perfume stick"></div>
+                <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">${o.name.toUpperCase()}</p></div></div>
+              </div>
+              <p class="box__hint">HOVER TO OPEN</p>
+            </a>
+            <div class="box__info">
+              <h3 class="box__name"><a href="product.html?p=${k}">${o.name}</a></h3>
+              <p class="box__spec">${o.notes.toUpperCase()}</p>
+              <button class="box__pick" type="button">Add to pair</button>
+            </div>`;
+          rail.appendChild(wrap);
+        });
+        wireBoxPickButtons(rail);
+        renderPair();
+      }
 
-      const add = document.querySelector("[data-pd-add]");
-      const sync = () => add.textContent = getPair().includes(id) ? "In your pair" : "Add to pair";
-      add.addEventListener("click", () => { togglePick(id); sync(); });
-      sync();
+      function render(id, { push = false } = {}) {
+        const p = CH24_PRODUCTS[id];
+        currentId = id;
 
-      /* the other three scents, so switching is one tap away */
-      const rail = document.querySelector("[data-pd-related]");
-      Object.keys(CH24_PRODUCTS).filter(k => k !== id).forEach(k => {
-        const o = CH24_PRODUCTS[k];
-        const a = document.createElement("a");
-        a.href = `product.html?p=${k}`;
-        a.style.cssText = "display:block;background:#141414;border-radius:10px;overflow:hidden;text-decoration:none";
-        a.innerHTML = `
-          <div style="aspect-ratio:4/5;overflow:hidden">
-            <img src="${o.img}" alt="${o.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
-          </div>
-          <div style="padding:1rem">
-            <p style="font-family:var(--font-display);font-weight:800;font-style:italic;font-size:1.1rem;color:#fff">${o.name}</p>
-            <p style="font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,.55);margin-top:0.3rem">${o.notes}</p>
-          </div>`;
-        rail.appendChild(a);
+        document.title = `${p.name} — Take Me Out solid perfume stick | CH24`;
+        stageImgs[3].src = p.img;
+        stageImgs[3].alt = `${p.name} solid perfume stick`;
+        stageImgs[4].src = p.loose || p.img;
+        stageImgs[4].alt = `${p.name}, cap off`;
+
+        const tone = document.querySelector("[data-pd2-tone]");
+        tone.textContent = `LABEL · ${p.toneName.toUpperCase()}`;
+        tone.style.borderColor = p.tone;
+        document.querySelector("[data-pd2-name]").textContent = p.name;
+        document.querySelector("[data-pd2-notes]").textContent = `Notes: ${p.notes}`;
+        document.querySelector("[data-pd2-perfect]").textContent = `Perfect for: ${p.perfectFor}`;
+
+        const add = document.querySelector("[data-pd2-add]");
+        add.dataset.id = id;
+        add.textContent = getPair().includes(id) ? "In your pair" : "Add to pair";
+
+        document.querySelectorAll(".pd2__swatch").forEach(s => s.classList.toggle("is-active", s.dataset.switch === id));
+
+        renderOthers();
+
+        if (push) history.replaceState(null, "", `product.html?p=${id}`);
+
+        document.querySelectorAll('script[data-pd2-ld]').forEach(n => n.remove());
+        const ld = document.createElement("script");
+        ld.type = "application/ld+json";
+        ld.dataset.pd2Ld = "1";
+        ld.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": `Take Me Out ${p.name} — solid perfume stick`,
+          "brand": { "@type": "Brand", "name": "CH24" },
+          "description": `5g solid perfume stick in a flip-top box. Notes: ${p.notes}. Alcohol free, unisex, long lasting. Sold as a pack of two for ₹499.`,
+          "offers": { "@type": "Offer", "priceCurrency": "INR", "price": "499", "availability": "https://schema.org/InStock" }
+        });
+        document.head.appendChild(ld);
+      }
+
+      document.querySelector("[data-pd2-add]").addEventListener("click", (e) => {
+        togglePick(e.currentTarget.dataset.id);
+        e.currentTarget.textContent = getPair().includes(e.currentTarget.dataset.id) ? "In your pair" : "Add to pair";
       });
 
-      /* product schema for search engines */
-      const ld = document.createElement("script");
-      ld.type = "application/ld+json";
-      ld.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": `Take Me Out ${p.name} — solid perfume stick`,
-        "brand": { "@type": "Brand", "name": "CH24" },
-        "description": `5g solid perfume stick in a flip-top box. Notes: ${p.notes}. Alcohol free, unisex, long lasting. Sold as a pack of two for ₹499.`,
-        "offers": { "@type": "Offer", "priceCurrency": "INR", "price": "499", "availability": "https://schema.org/InStock" }
+      document.querySelectorAll(".pd2__swatch").forEach(s => {
+        s.addEventListener("click", () => render(s.dataset.switch, { push: true }));
       });
-      document.head.appendChild(ld);
+
+      render(currentId);
+
+      /* scroll-driven crossfade through the four real stages */
+      gsap.registerPlugin(ScrollTrigger);
+      function setActiveStage(n) {
+        Object.entries(stageImgs).forEach(([k, img]) => img.classList.toggle("is-active", k === String(n)));
+      }
+      document.querySelectorAll("[data-stage-trigger]").forEach(stageEl => {
+        const n = stageEl.dataset.stageTrigger;
+        ScrollTrigger.create({
+          trigger: stageEl,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => setActiveStage(n),
+          onEnterBack: () => setActiveStage(n)
+        });
+      });
     })();
   </script>
 </body>

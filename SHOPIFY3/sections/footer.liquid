@@ -1,0 +1,107 @@
+<footer class="footer-v3">
+  <div class="footer-v3__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'newsletter' -%}
+          <div class="footer-v3__col" {{ block.shopify_attributes }}>
+            <div class="footer-v3__signup">
+              {%- if block.settings.logo != blank -%}
+                <img class="footer-v3__logo" src="{{ block.settings.logo | image_url: width: 360 }}" alt="{{ shop.name }}" loading="lazy" width="{{ block.settings.logo.width }}" height="{{ block.settings.logo.height }}">
+              {%- else -%}
+                <img class="footer-v3__logo" src="{{ 'logo-white.png' | asset_url }}" alt="{{ shop.name }}" loading="lazy" width="80" height="46">
+              {%- endif -%}
+              <p class="footer-v3__hook">{{ block.settings.hook_text }}</p>
+              <form class="footer-v3__form" action="{{ routes.contact_url }}#contact_form" method="post" id="contact_form" accept-charset="UTF-8">
+                <input type="hidden" name="form_type" value="customer">
+                <input type="hidden" name="utf8" value="✓">
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <label class="visually-hidden" for="FooterEmail">Email</label>
+                <input class="footer-v3__input" id="FooterEmail" type="email" name="contact[email]" placeholder="{{ block.settings.email_placeholder }}" required>
+                <button class="btn btn--orange" type="submit">{{ block.settings.button_text }}</button>
+              </form>
+            </div>
+          </div>
+        {%- when 'link_list' -%}
+          <nav class="footer-v3__col" aria-label="{{ block.settings.title }}" {{ block.shopify_attributes }}>
+            <p class="footer-v3__col-title">{{ block.settings.title | upcase }}</p>
+            {%- for link in linklists[block.settings.menu].links -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endfor -%}
+          </nav>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  <div class="footer-v3__bar">
+    <p>© {{ 'now' | date: "%Y" }} {{ shop.name }} · {{ section.settings.footer_copyright_left }}</p>
+    <p>{{ section.settings.footer_copyright_right }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_copyright_left",
+      "label": "Copyright Left Text",
+      "default": "BUILT IN INDIA. BUILT FOR NOW."
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright_right",
+      "label": "Copyright Right Text",
+      "default": "SCENT IS IDENTITY. NOT OCCASION."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "newsletter",
+      "name": "Newsletter Form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Footer Small Logo"
+        },
+        {
+          "type": "text",
+          "id": "hook_text",
+          "label": "Newsletter Call to Action",
+          "default": "First drops go to the list."
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email Input Placeholder",
+          "default": "your email"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Label",
+          "default": "Join"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Navigation Menu Linklist",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Menu Column Title",
+          "default": "Quick links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Link List Selection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

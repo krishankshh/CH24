@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="section--light">
@@ -37,78 +37,90 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count>0</span></a>
+    <a class="nav__cart" href="checkout.html">Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
   </header>
 
   <main class="page page--wide">
     <header class="page-hero">
       <p class="page-hero__eyebrow">TAKE ME OUT · PACK 01</p>
-      <h1 class="page-hero__title">Pick <em>your</em> pair.</h1>
+      <h1 class="page-hero__title">Flip it open.</h1>
       <p class="page-hero__sub">Four fragrances. Any two for ₹499. Each stick is 5g of solid perfume in a flip-top box: alcohol free, skin-nourishing, pocket-sized.</p>
     </header>
 
-    <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:2rem">
       <button class="shuffle-btn" type="button" data-shuffle>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
         Surprise me
       </button>
     </div>
 
-    <div class="shop__grid" style="padding:0">
-      <article class="product" data-id="ocean">
-        <a class="product__media" style="--tone:#61D6C4" href="product.html?p=ocean">
-          <span class="product__tag">OCEAN RUSH</span>
-          <span class="product__mood">OFFICE</span>
-          <img src="assets/products/product-ocean-rush.jpg" alt="Ocean Rush solid perfume stick" loading="lazy">
+    <div class="box-grid">
+      <div>
+        <a class="box" href="product.html?p=ocean" data-id="ocean" tabindex="0" style="--tone:#61D6C4; --ink:#0A0A0A">
+          <span class="box__flag">OFFICE</span>
+          <div class="box__inner">
+            <div class="box__interior"><img src="assets/products/product-ocean-rush.jpg" alt="Ocean Rush solid perfume stick"></div>
+            <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">OCEAN RUSH</p></div></div>
+          </div>
+          <p class="box__hint">HOVER TO OPEN</p>
         </a>
-        <div class="product__info">
-          <h2 class="product__name">Ocean Rush</h2>
-          <p class="product__spec">AQUA NOTES · JASMINE · PATCHOULI</p>
-          <button class="product__pick" type="button">Add to pair</button>
+        <div class="box__info">
+          <h2 class="box__name"><a href="product.html?p=ocean">Ocean Rush</a></h2>
+          <p class="box__spec">AQUA NOTES · JASMINE · PATCHOULI</p>
+          <button class="box__pick" type="button">Add to pair</button>
         </div>
-      </article>
+      </div>
 
-      <article class="product" data-id="pistachio">
-        <a class="product__media" style="--tone:#85AF67" href="product.html?p=pistachio">
-          <span class="product__tag">NUTTY PISTACHIO</span>
-          <span class="product__mood">PARTY</span>
-          <img src="assets/products/product-nutty-pistachio.jpg" alt="Nutty Pistachio solid perfume stick" loading="lazy">
+      <div>
+        <a class="box" href="product.html?p=pistachio" data-id="pistachio" tabindex="0" style="--tone:#85AF67; --ink:#0A0A0A">
+          <span class="box__flag">PARTY</span>
+          <div class="box__inner">
+            <div class="box__interior"><img src="assets/products/product-nutty-pistachio.jpg" alt="Nutty Pistachio solid perfume stick"></div>
+            <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">NUTTY PISTACHIO</p></div></div>
+          </div>
+          <p class="box__hint">HOVER TO OPEN</p>
         </a>
-        <div class="product__info">
-          <h2 class="product__name">Nutty Pistachio</h2>
-          <p class="product__spec">PISTACHIO · ALMOND · WOODY</p>
-          <button class="product__pick" type="button">Add to pair</button>
+        <div class="box__info">
+          <h2 class="box__name"><a href="product.html?p=pistachio">Nutty Pistachio</a></h2>
+          <p class="box__spec">PISTACHIO · ALMOND · WOODY</p>
+          <button class="box__pick" type="button">Add to pair</button>
         </div>
-      </article>
+      </div>
 
-      <article class="product" data-id="vanilla">
-        <a class="product__media" style="--tone:#E9C7AC" href="product.html?p=vanilla">
-          <span class="product__tag">VANILLA BEAN</span>
-          <span class="product__mood">DATE</span>
-          <img src="assets/products/product-vanilla-bean.jpg" alt="Vanilla Bean solid perfume stick" loading="lazy">
+      <div>
+        <a class="box" href="product.html?p=vanilla" data-id="vanilla" tabindex="0" style="--tone:#E9C7AC; --ink:#0A0A0A">
+          <span class="box__flag">DATE</span>
+          <div class="box__inner">
+            <div class="box__interior"><img src="assets/products/product-vanilla-bean.jpg" alt="Vanilla Bean solid perfume stick"></div>
+            <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">VANILLA BEAN</p></div></div>
+          </div>
+          <p class="box__hint">HOVER TO OPEN</p>
         </a>
-        <div class="product__info">
-          <h2 class="product__name">Vanilla Bean</h2>
-          <p class="product__spec">VANILLA · AMBER · WARM SPICE</p>
-          <button class="product__pick" type="button">Add to pair</button>
+        <div class="box__info">
+          <h2 class="box__name"><a href="product.html?p=vanilla">Vanilla Bean</a></h2>
+          <p class="box__spec">VANILLA · AMBER · WARM SPICE</p>
+          <button class="box__pick" type="button">Add to pair</button>
         </div>
-      </article>
+      </div>
 
-      <article class="product" data-id="oud">
-        <a class="product__media" style="--tone:#533C2C" href="product.html?p=oud">
-          <span class="product__tag" style="color:#fff">OUD AFFAIR</span>
-          <span class="product__mood">NIGHT</span>
-          <img src="assets/products/product-oud-affair.jpg" alt="Oud Affair solid perfume stick" loading="lazy">
+      <div>
+        <a class="box" href="product.html?p=oud" data-id="oud" tabindex="0" style="--tone:#533C2C; --ink:#FFFFFF">
+          <span class="box__flag">NIGHT</span>
+          <div class="box__inner">
+            <div class="box__interior"><img src="assets/products/product-oud-affair.jpg" alt="Oud Affair solid perfume stick"></div>
+            <div class="box__lid"><div class="box__lid-face"><p class="box__wordmark">CH24</p><p class="box__scentname">OUD AFFAIR</p></div></div>
+          </div>
+          <p class="box__hint">HOVER TO OPEN</p>
         </a>
-        <div class="product__info">
-          <h2 class="product__name">Oud Affair</h2>
-          <p class="product__spec">AGARWOOD · OUD · VANILLA</p>
-          <button class="product__pick" type="button">Add to pair</button>
+        <div class="box__info">
+          <h2 class="box__name"><a href="product.html?p=oud">Oud Affair</a></h2>
+          <p class="box__spec">AGARWOOD · OUD · VANILLA</p>
+          <button class="box__pick" type="button">Add to pair</button>
         </div>
-      </article>
+      </div>
     </div>
 
-    <aside class="pairbar" data-pairbar aria-live="polite" style="margin-left:0;margin-right:0">
+    <aside class="pairbar" data-pairbar aria-live="polite" aria-atomic="true">
       <p class="pairbar__label">Your pair <span data-pair-names>: pick two</span></p>
       <a class="btn btn--orange pairbar__cta" href="checkout.html" data-pair-cta aria-disabled="true">Checkout · ₹499</a>
     </aside>
@@ -117,11 +129,12 @@
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__signup">
+        <img class="footer__logo footer__logo--small" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
         <p class="footer__hook">First drops go to the list.</p>
         <form class="footer__form" action="#" method="post">
           <label class="visually-hidden" for="email">Email</label>
           <input id="email" type="email" name="email" placeholder="your email" required>
-          <button class="btn btn--white" type="submit">Join</button>
+          <button class="btn btn--orange" type="submit">Join</button>
         </form>
       </div>
       <nav class="footer__col" aria-label="Shop">
@@ -143,7 +156,6 @@
         <a href="terms.html">Terms &amp; conditions</a>
       </nav>
     </div>
-    <img class="footer__logo" src="assets/logo-white.png" alt="CH24 — India's fragrance house for the generation that moves" loading="lazy">
     <div class="footer__bar">
       <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
       <p>SCENT IS IDENTITY. NOT OCCASION.</p>

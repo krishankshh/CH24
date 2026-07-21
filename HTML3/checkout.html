@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your bag | CH24</title>
+  <meta name="description" content="Your Take Me Out pair. ₹499 for a pack of two.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="section--light">
+
+  <!-- Top Announcement Ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+      <span>scent is identity. not occasion.</span><span>·</span>
+      <span>₹499 for a pack of two</span><span>·</span>
+      <span>alcohol free. unisex.</span><span>·</span>
+      <span>carry it. every day.</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- Grid Header Navigation -->
+  <div class="nav-container">
+    <header class="nav" style="background:var(--cream); color:var(--cream-ink); border-bottom:var(--grid-border-light)">
+      <a class="nav__logo" href="index.html" aria-label="CH24 home" style="border-right:var(--grid-border-light)">
+        <img src="assets/logo-white.png" alt="CH24 Logo" width="80" height="46">
+      </a>
+      <nav class="nav__links" aria-label="Main Navigation">
+        <a href="shop.html" style="border-right:var(--grid-border-light)">Shop</a>
+        <a href="about.html" style="border-right:var(--grid-border-light)">About</a>
+        <a href="faq.html" style="border-right:var(--grid-border-light)">FAQ</a>
+        <a href="contact.html" style="border-right:var(--grid-border-light)">Contact</a>
+      </nav>
+      <a class="nav__cart" href="checkout.html" style="border-left:var(--grid-border-light)">Bag <span class="nav__count" data-cart-count aria-live="polite" aria-atomic="true">0</span></a>
+    </header>
+  </div>
+
+  <main>
+    <!-- Checkout Hero Header -->
+    <header class="page-hero" style="border-bottom:var(--grid-border-light)">
+      <p class="eyebrow page-hero__eyebrow">YOUR BAG</p>
+      <h1 class="title-large page-hero__title" id="co-title" style="color:var(--cream-ink)">Your pair.</h1>
+    </header>
+
+    <!-- Checkout Grid System -->
+    <div class="checkout-grid" style="color:var(--cream-ink); border-bottom:var(--grid-border-light)">
+      <!-- Checkout Main Area -->
+      <div class="checkout-main">
+        <div id="co-full" hidden>
+          <div class="checkout-box" style="border-color:rgba(23, 20, 16, 0.15)">
+            <h2 style="color:var(--cream-ink)">Order Summary</h2>
+            <div id="co-items-list" style="display:flex; flex-direction:column; gap:1rem;">
+              <!-- items injected dynamically -->
+            </div>
+            
+            <div class="checkout-pair-details" style="margin-top:1rem">
+              <span style="font-weight:normal; color:rgba(23, 20, 16, 0.6)">Take Me Out (Pack of Two)</span>
+              <span style="font-weight:bold; font-size:1.15rem">₹499</span>
+            </div>
+
+            <div class="checkout-line" style="border-top:1px dashed rgba(23, 20, 16, 0.2); padding-top:1rem">
+              <span>Standard Shipping</span>
+              <span>FREE</span>
+            </div>
+
+            <div class="checkout-total" style="border-top:var(--grid-border-light); padding-top:1.5rem; color:var(--cream-ink)">
+              <span>Total to Pay</span>
+              <span>₹499</span>
+            </div>
+
+            <a class="btn btn--orange" id="co-wa-btn" href="#" target="_blank" rel="noopener" style="margin-top:1.5rem; width:100%">Order on WhatsApp</a>
+            <p class="checkout-note" style="margin-top:1rem; font-size:0.8rem; line-height:1.4">UPI and card payments go live with the official store launch. Until then, orders are manually verified and confirmed in one tap on WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="prose" id="co-empty" hidden>
+          <p>Your pair is not complete yet. It takes two.</p>
+          <p><a href="shop.html" style="color:var(--orange); font-weight:bold">Pick your pair →</a></p>
+        </div>
+      </div>
+
+      <!-- Checkout Sidebar Details -->
+      <div class="checkout-sidebar">
+        <div class="info-card" style="border-color:rgba(23, 20, 16, 0.15); margin-bottom:1.5rem">
+          <h2>Shipping Speed</h2>
+          <p>Orders are dispatched within 24-48 hours. Expect delivery in 2 to 7 working days anywhere in India.</p>
+        </div>
+        <div class="info-card" style="border-color:rgba(23, 20, 16, 0.15)">
+          <h2>Fragrance Care</h2>
+          <p>Store your solid sticks in a cool, dry place. Avoid leaving them in hot environments (like parked cars) to maintain their optimal solid consistency.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Grid Footer -->
+  <footer class="footer-v3" style="border-top:var(--grid-border-light)">
+    <div class="footer-v3__grid" style="border-bottom-color:rgba(23, 20, 16, 0.15)">
+      <div class="footer-v3__col" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <img class="footer-v3__logo" src="assets/logo-white.png" alt="CH24 Logo" loading="lazy">
+        <p class="footer-v3__hook" style="color:rgba(255, 255, 255, 0.8)">First drops go to the list.</p>
+        <form class="footer-v3__form" action="#" method="post">
+          <label class="visually-hidden" for="newsletter-email">Email Address</label>
+          <input class="footer-v3__input" id="newsletter-email" type="email" name="email" placeholder="your email" required style="border-color:rgba(255,255,255,0.15)">
+          <button class="btn btn--orange" type="submit">Join</button>
+        </form>
+      </div>
+      <nav class="footer-v3__col" aria-label="Shop Navigation" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <p class="footer-v3__col-title">SHOP</p>
+        <a href="shop.html">Pack 01</a>
+        <a href="checkout.html">Your bag</a>
+      </nav>
+      <nav class="footer-v3__col" aria-label="Company Navigation" style="border-right-color:rgba(23, 20, 16, 0.15)">
+        <p class="footer-v3__col-title">COMPANY</p>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://instagram.com/ch24" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <nav class="footer-v3__col" aria-label="Legal Navigation">
+        <p class="footer-v3__col-title">LEGAL</p>
+        <a href="shipping-returns.html">Shipping &amp; returns</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+    <div class="footer-v3__bar" style="color:rgba(23, 20, 16, 0.45)">
+      <p>© 2026 CH24 · BUILT IN INDIA. BUILT FOR NOW.</p>
+      <p>SCENT IS IDENTITY. NOT OCCASION.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    (() => {
+      const pair = getPair();
+      if (pair.length === 2) {
+        document.getElementById("co-full").removeAttribute("hidden");
+        document.getElementById("co-items-list").innerHTML = pair
+          .map(id => `
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(23,20,16,0.08); padding-bottom:0.75rem;">
+              <div>
+                <p style="font-weight:bold; font-size:1.05rem;">Take Me Out · ${CH24_PRODUCTS[id].name}</p>
+                <p style="font-size:0.75rem; color:rgba(23,20,16,0.5);" class="spec-line">NOTES: ${CH24_PRODUCTS[id].notes}</p>
+              </div>
+              <span style="font-size:0.9rem; font-weight:bold; color:rgba(23,20,16,0.6)">5 GMS</span>
+            </div>`)
+          .join("");
+        document.getElementById("co-wa-btn").href = pairWaLink();
+      } else {
+        document.getElementById("co-title").textContent = "Almost there.";
+        document.getElementById("co-empty").removeAttribute("hidden");
+      }
+    })();
+  </script>
+</body>
+</html>

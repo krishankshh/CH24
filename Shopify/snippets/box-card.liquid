@@ -1,0 +1,93 @@
+{% comment %}
+  Renders a product card for the box grid showcase.
+  Accepts:
+  - product: {Object} Shopify Product object
+  - mood_tag: {String} Mood flag (optional)
+  - tone: {String} Color code (optional)
+  - ink: {String} Ink color code (optional)
+  - scent_id: {String} Explicit pair-picker key (optional). Pass this
+    whenever the caller already knows the definitive scent id (e.g. a
+    merchant-set block setting) — it must win over the handle-guessing
+    below, otherwise a non-standard product handle can make this card's
+    data-id disagree with window.CH24_SHOPIFY_VARIANTS's key for the
+    same scent, and the pair-picker silently can't check it out.
+{% endcomment %}
+
+{%- assign product_id = product.handle | replace: 'take-me-out-', '' -%}
+{%- assign current_tone = tone | default: '#61D6C4' -%}
+{%- assign current_ink = ink | default: '#0A0A0A' -%}
+{%- assign current_mood = mood_tag | default: 'Scent' -%}
+
+{%- comment -%} Determine styles based on handles for standard products if not passed {%- endcomment -%}
+{%- if tone == blank -%}
+  {%- case product_id -%}
+    {%- when 'ocean' or 'ocean-rush' -%}
+      {%- assign product_id = 'ocean' -%}
+      {%- assign current_tone = '#61D6C4' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'OFFICE' -%}
+    {%- when 'pistachio' or 'nutty-pistachio' -%}
+      {%- assign product_id = 'pistachio' -%}
+      {%- assign current_tone = '#85AF67' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'PARTY' -%}
+    {%- when 'vanilla' or 'vanilla-bean' -%}
+      {%- assign product_id = 'vanilla' -%}
+      {%- assign current_tone = '#E9C7AC' -%}{%- assign current_ink = '#0A0A0A' -%}{%- assign current_mood = 'DATE' -%}
+    {%- when 'oud' or 'oud-affair' -%}
+      {%- assign product_id = 'oud' -%}
+      {%- assign current_tone = '#533C2C' -%}{%- assign current_ink = '#FFFFFF' -%}{%- assign current_mood = 'NIGHT' -%}
+  {%- endcase -%}
+{%- endif -%}
+
+{%- if scent_id != blank -%}
+  {%- assign product_id = scent_id -%}
+{%- endif -%}
+
+{%- assign default_specs = 'AQUA NOTES · JASMINE · PATCHOULI' -%}
+{%- case product_id -%}
+  {%- when 'pistachio' -%}
+    {%- assign default_specs = 'PISTACHIO · ALMOND · WOODY' -%}
+  {%- when 'vanilla' -%}
+    {%- assign default_specs = 'VANILLA · AMBER · WARM SPICE' -%}
+  {%- when 'oud' -%}
+    {%- assign default_specs = 'AGARWOOD · OUD · VANILLA' -%}
+{%- endcase -%}
+
+<div>
+  <a class="box" href="{{ product.url }}" data-id="{{ product_id }}" tabindex="0" style="--tone:{{ current_tone }}; --ink:{{ current_ink }}">
+    <span class="box__flag">{{ current_mood | upcase }}</span>
+    <div class="box__inner">
+      <div class="box__interior">
+        {%- if product.featured_image != blank -%}
+          <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="400" height="500">
+        {%- else -%}
+          {%- assign fallback_img = 'product-ocean-rush.jpg' -%}
+          {%- case product_id -%}
+            {%- when 'pistachio' -%}
+              {%- assign fallback_img = 'product-nutty-pistachio.jpg' -%}
+            {%- when 'vanilla' -%}
+              {%- assign fallback_img = 'product-vanilla-bean.jpg' -%}
+            {%- when 'oud' -%}
+              {%- assign fallback_img = 'product-oud-affair.jpg' -%}
+          {%- endcase -%}
+          <img src="{{ fallback_img | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1000" height="1250">
+        {%- endif -%}
+      </div>
+      <div class="box__lid">
+        <div class="box__lid-face">
+          <p class="box__wordmark">CH24</p>
+          <p class="box__scentname">{{ product.title | upcase }}</p>
+        </div>
+      </div>
+    </div>
+    <p class="box__hint">HOVER TO OPEN</p>
+  </a>
+  <div class="box__info">
+    <h3 class="box__name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <p class="box__spec">
+      {%- if product.metafields.custom.specifications != blank -%}
+        {{ product.metafields.custom.specifications | upcase }}
+      {%- else -%}
+        {{ default_specs }}
+      {%- endif -%}
+    </p>
+    <button class="box__pick" type="button">Add to cart</button>
+  </div>
+</div>

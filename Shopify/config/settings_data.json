@@ -1,0 +1,110 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "favicon": "",
+    "whatsapp_number": "919196036665",
+    "social_instagram_link": "https://instagram.com/ch24",
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "hook_text": "First drops go to the list.",
+              "email_placeholder": "your email",
+              "button_text": "Join"
+            }
+          },
+          "menu_shop": {
+            "type": "link_list",
+            "settings": {
+              "title": "SHOP",
+              "menu": "main-menu"
+            }
+          },
+          "menu_company": {
+            "type": "link_list",
+            "settings": {
+              "title": "COMPANY",
+              "menu": "footer"
+            }
+          },
+          "menu_legal": {
+            "type": "link_list",
+            "settings": {
+              "title": "LEGAL",
+              "menu": "legal"
+            }
+          }
+        },
+        "block_order": [
+          "newsletter",
+          "menu_shop",
+          "menu_company",
+          "menu_legal"
+        ],
+        "settings": {
+          "footer_copyright_left": "BUILT IN INDIA. BUILT FOR NOW.",
+          "footer_copyright_right": "SCENT IS IDENTITY. NOT OCCASION."
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_width": 80,
+          "menu": "main-menu"
+        }
+      },
+      "ticker": {
+        "type": "ticker",
+        "blocks": {
+          "slogan1": {
+            "type": "text_block",
+            "settings": {
+              "text": "scent is identity. not occasion."
+            }
+          },
+          "slogan2": {
+            "type": "text_block",
+            "settings": {
+              "text": "₹499 for a pack of two"
+            }
+          },
+          "slogan3": {
+            "type": "text_block",
+            "settings": {
+              "text": "alcohol free. unisex."
+            }
+          },
+          "slogan4": {
+            "type": "text_block",
+            "settings": {
+              "text": "carry it. every day."
+            }
+          }
+        },
+        "block_order": [
+          "slogan1",
+          "slogan2",
+          "slogan3",
+          "slogan4"
+        ],
+        "settings": {
+          "bg_color": "#E96213",
+          "text_color": "#0A0A0A",
+          "speed": 22
+        }
+      }
+    }
+  },
+  "presets": {}
+}

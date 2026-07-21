@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-contact",
+      "settings": {
+        "title": "Talk to us.",
+        "description": "Order help, scent questions, collabs. We reply as people, not as a ticket queue.",
+        "wa_card_title": "WhatsApp",
+        "wa_card_desc": "Fastest way to reach us. Tap, type, done.",
+        "wa_btn_label": "Message on WhatsApp",
+        "email_address": "help@ch24.in",
+        "form_title": "Or write it here",
+        "form_btn_label": "Send message"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

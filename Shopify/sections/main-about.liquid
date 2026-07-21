@@ -1,0 +1,89 @@
+<article class="page">
+  <header class="page-hero">
+    <p class="page-hero__eyebrow">{{ section.settings.eyebrow | upcase }}</p>
+    <h1 class="page-hero__title">{{ section.settings.title }}</h1>
+  </header>
+  <div class="prose">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'heading' -%}
+          <h2 {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+        {%- when 'paragraph' -%}
+          <p {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+        {%- when 'list_item' -%}
+          <ul {{ block.shopify_attributes }}><li>{{ block.settings.text }}</li></ul>
+        {%- when 'link' -%}
+          <p {{ block.shopify_attributes }}><a href="{{ block.settings.url | default: routes.all_products_collection_url }}">{{ block.settings.text }} →</a></p>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "About Page Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "ABOUT CH24"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Not a perfume brand. A fragrance house."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Heading Text", "default": "Section heading" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Paragraph Text", "default": "Body copy goes here." }
+      ]
+    },
+    {
+      "type": "list_item",
+      "name": "List Item",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "List Item Text", "default": "A value or point, one per block." }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Link Text", "default": "Start with Pack 01" },
+        { "type": "url", "id": "url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "paragraph", "settings": { "text": "CH24 was built with one clear intention: to bring a fresh, Gen Z perspective into India's fragrance market. A category dominated by legacy brands, heavy glass bottles, and occasion-only thinking." } },
+      { "type": "paragraph", "settings": { "text": "We saw a generation that moves differently. They carry less. They want to smell intentional every single day, not just on Friday nights. They want fragrance that fits in a pocket, not on a shelf. A generation no legacy fragrance brand in India was actually speaking to." } },
+      { "type": "paragraph", "settings": { "text": "So we built CH24. Not a cheaper version of an existing perfume brand. Not a mass-market deo with better packaging. Something completely new: a fragrance house designed from the ground up for the way Gen Z lives, carries, and identifies with scent." } },
+      { "type": "heading", "settings": { "text": "The format is the message" } },
+      { "type": "paragraph", "settings": { "text": "We started with Take Me Out: a 5g solid perfume stick in a flip-top box. Alcohol free. Skin-nourishing. Pocket-sized. Priced at ₹499 for a pack of two, because great scent should not require justification." } },
+      { "type": "paragraph", "settings": { "text": "The box is not packaging. It is the brand's first statement. When you pull it out, people notice before you have applied a single thing. That moment is part of what we sell." } },
+      { "type": "heading", "settings": { "text": "What we stand for" } },
+      { "type": "list_item", "settings": { "text": "Scent as identity, not occasion. CH24 is not for special moments. It is for every moment." } },
+      { "type": "list_item", "settings": { "text": "Accessible without compromise. Real quality at a price that does not require justification." } },
+      { "type": "list_item", "settings": { "text": "Genderless by architecture. Every CH24 product is designed for everyone, built into the foundation." } },
+      { "type": "list_item", "settings": { "text": "India-rooted, world-aware. Scent profiles, pricing, and culture grounded here. Ambition and craft standard: global." } },
+      { "type": "heading", "settings": { "text": "Where it goes" } },
+      { "type": "paragraph", "settings": { "text": "The stick is just the beginning. CH24 is building toward a complete fragrance house that grows from the pocket into every part of how Gen Z experiences scent. All under one identity. All built the same way: accessible, intentional, and unapologetically for this generation." } },
+      { "type": "link", "settings": { "text": "Start with Pack 01" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+<section class="shop-v3">
+  <header class="page-hero" style="border-bottom:var(--grid-border-light); margin-bottom: 2rem;">
+    <p class="eyebrow page-hero__eyebrow">SEARCH RESULTS</p>
+    <h1 class="title-large page-hero__title" style="color:var(--cream-ink); margin-top: 0.5rem;">
+      {%- if search.performed -%}
+        Results for "{{ search.terms | escape }}"
+      {%- else -%}
+        Search our store
+      {%- endif -%}
+    </h1>
+  </header>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" style="margin-bottom: 4rem; display: flex; gap: 1rem; padding: 0 var(--gutter)">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products..." style="flex: 1; padding: 1rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(23, 20, 16, 0.15); color: var(--cream-ink); font-family: inherit; font-size: 0.95rem;">
+    <button class="btn btn--orange" type="submit">Search</button>
+  </form>
+
+  {%- if search.performed -%}
+    {%- if search.results_count > 0 -%}
+      <div class="sleeve-grid" style="padding: 0 var(--gutter) 4rem">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'box-card', product: item %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p style="color: rgba(23, 20, 16, 0.6); text-align: center; padding-bottom: 4rem;">No results found. Try search term variations.</p>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Search Results Page",
+  "settings": []
+}
+{% endschema %}

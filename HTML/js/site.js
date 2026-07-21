@@ -53,26 +53,50 @@ function togglePick(id) {
   setPair(pair);
 }
 
-document.querySelectorAll(".box[data-id] .box__pick").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    togglePick(btn.closest(".box").dataset.id);
-  });
-});
-
-/* the box lid opens on hover (desktop) via CSS; on touch, tap the box
-   itself to flip it open, tap again (or elsewhere) to close */
-const touchCapable = window.matchMedia("(hover: none)").matches;
-if (touchCapable) {
-  document.querySelectorAll(".box[data-id]").forEach(box => {
-    box.addEventListener("click", (e) => {
-      if (e.target.closest(".box__pick")) return;
-      const wasOpen = box.classList.contains("is-open");
-      document.querySelectorAll(".box.is-open").forEach(b => b !== box && b.classList.remove("is-open"));
-      box.classList.toggle("is-open", !wasOpen);
+/* .box__pick lives in a sibling .box__info, not inside .box itself, so it
+   can't be found via ".box .box__pick" — read the id off the .box that
+   immediately precedes .box__info instead */
+function wireBoxPickButtons(root = document) {
+  root.querySelectorAll(".box__pick").forEach(btn => {
+    if (btn.dataset.wired) return;
+    const info = btn.closest(".box__info");
+    if (!info) return;
+    const box = info.previousElementSibling?.classList.contains("box")
+      ? info.previousElementSibling
+      : info.previousElementSibling?.querySelector(".box");
+    if (!box || !box.dataset.id) return;
+    btn.dataset.wired = "1";
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      togglePick(box.dataset.id);
     });
   });
 }
+wireBoxPickButtons();
+
+/* Click logic for the box cards:
+   On desktop, clicking the box navigates to the product detail page.
+   On mobile, the first tap opens the box to reveal the stick. If it's already open, tapping again navigates. */
+document.addEventListener("click", (e) => {
+  const box = e.target.closest(".box[data-id]");
+  if (!box) return;
+  if (e.target.closest(".box__pick")) return;
+
+  const id = box.dataset.id;
+  if (!id) return;
+
+  const touchCapable = window.matchMedia("(hover: none)").matches;
+  if (touchCapable) {
+    const isOpen = box.classList.contains("is-open");
+    if (isOpen) {
+      // Let it naturally navigate (browser follows anchor href)
+    } else {
+      e.preventDefault();
+      document.querySelectorAll(".box.is-open").forEach(b => b !== box && b.classList.remove("is-open"));
+      box.classList.add("is-open");
+    }
+  }
+});
 
 renderPair();
 
@@ -121,9 +145,23 @@ if (nlForm) nlForm.addEventListener("submit", (e) => {
 
 /* mood strip: click a mood → opens + highlights the matching box and
    scrolls to it, picks it as the first pair choice */
+/* touch/no-hover devices: tap a panel to fold the row onto it (CSS
+   handles the fold on :hover for mouse users, this covers the rest) */
+if (window.matchMedia("(hover: none)").matches) {
+  document.querySelectorAll("[data-panel]").forEach(panel => {
+    panel.addEventListener("click", (e) => {
+      if (e.target.closest(".mood__cta")) return;
+      const wasActive = panel.classList.contains("is-active");
+      document.querySelectorAll(".mood__panel.is-active").forEach(p => p !== panel && p.classList.remove("is-active"));
+      panel.classList.toggle("is-active", !wasActive);
+    });
+  });
+}
+
 document.querySelectorAll("[data-mood-pick]").forEach(tile => {
   tile.addEventListener("click", (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const id = tile.dataset.moodPick;
     const pair = getPair().filter(x => x !== id);
     pair.unshift(id);
